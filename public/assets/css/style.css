@@ -1,0 +1,30 @@
+@font-face{font-family:Milkshake;font-display:swap;src:local('Milkshake'),url(Milkshake.woff2) format('woff'),url(Milkshake.woff2) format('woff2')}
+@media (min-width:300px) and (max-width:767px){
+.navbar-expand-sm{color:#f0f8ff;font-size:1.2em;background-color:#1a1717}
+}
+@media (min-width:640px) and (max-width:1024px) and (orientation:landscape){
+.navbar-expand-sm{color:#f0f8ff;font-size:1.2em;background-color:transparent}
+}
+.navbar{font-family:Milkshake,Arial,serif;color:#f0f8ff;font-size:1.2em}
+.navbar-light .navbar-text{color:#f0f8ff;font-size:1.2em;text-decoration:none}
+.navbar-light .navbar-text:hover{color:#f0f8ff;font-size:1.2em;text-decoration:none;transition:all .3s;transform:scale(1.07)}
+.navbar-light .navbar-nav .nav-link{color:#f0f8ff;font-size:1.2em;text-decoration:none}
+.navbar .navbar-default{background-color:transparent}
+.button{float:right;position:relative}
+.w-75{width:75%!important}
+.w-70{width:70%!important}
+.w-60{width:60%!important}
+.w-40{width:40%!important}
+.w-90{width:90%!important}
+.w-80{width:80%!important}
+.w-85{width:85%!important}
+.hrcv{background-color:#007bff;height:3px}
+.card-body{min-height:237px}
+nav a{position:relative;display:inline-block;font-size:2em;font-weight:800;color:#f0f8ff;overflow:hidden;background:linear-gradient(to right,#4169e1,#b6b6e6 50%,#f0f8ff 50%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 100%;background-position:100%;transition:background-position 275ms ease;text-decoration:none;padding-left:1px;padding-right:5px}
+nav a:hover{background-position:0 100%}
+textarea{resize:none}
+.close-windows{font-size:19px;color:#000}
+.maximize{font-size:16px;color:#000;padding:5px}
+.minimize{font-size:16px;color:#000}
+.overlay{position:fixed;width:80%;height:80%;left:10%;top:95px;background:#000;z-index:10000;border-left:solid 5px #f7f5f3;border-right:solid 5px #f7f5f3;border-bottom:solid 5px #f7f5f3;border-top:solid 27px #f7f5f3;background-color:#000408;border-radius:.1vw;min-height:356px;color:#f0f8ff;font-size:.7em}
+.rounded{border-radius:10.25rem!important}

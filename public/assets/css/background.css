@@ -1,0 +1,23 @@
+.headerwebsite{background:url(../img/1947484-min.webp) top center;background-size:cover;background-attachment:fixed;padding-bottom:70px;background-color:#312d2d}
+div[id^=projet]{opacity:0}
+.downloadcv{margin-bottom:6px}
+.contact{background:linear-gradient(.25turn ,#0d3b4e,#6b99c7,#a0c1ec);min-height:100vh;color:#f0f8ff;font-size:1.7em;padding-top:70px;padding-bottom:70px}
+.haut{margin-top:73px}
+.cv{min-height:100vh}
+.bg-belge{background-color:beige}
+.console{border-left:solid 5px #f7f5f3;border-right:solid 5px #f7f5f3;border-bottom:solid 5px #f7f5f3;border-top:solid 27px #f7f5f3;background-color:#000408;border-radius:.1vw;min-height:356px;position:relative;color:#f0f8ff;font-size:.7em}
+.title{color:#000;font-size:1.6em;bottom:27px;position:relative}
+.console{border-left:solid 5px #f7f5f3;border-right:solid 5px #f7f5f3;border-bottom:solid 5px #f7f5f3;border-top:solid 27px #f7f5f3;background-color:#000408;border-radius:.1vw;min-height:356px;position:relative;color:#f0f8ff;font-size:.7em}
+.title{color:#000;font-size:1.6em;bottom:27px;position:relative}
+.text{padding:1px 7px;color:#f0f8ff;font-size:1.2em;position:relative;bottom:19px}
+.intro{color:#f0f8ff}
+.intro span:not(.fade){opacity:0;color:#f0f8ff}
+.intro span{transition:all .4s;color:#f0f8ff}
+.about-img{text-align:center;padding:7px}
+.bg-nav-dark{background-color:#1a1717!important}
+.padancre{padding-top:70px;padding-bottom:70px}
+.sociaux{float:right}
+.buttonsociaux{font-size:32px;border-radius:20px}
+.linkdin{background-color:#007bff;font-size:39px;color:#fff}
+.github{background-color:#fff;color:#343a40;font-size:40px}
+.github-cv{background-color:transparent;color:#343a40;font-size:34px}

@@ -1,0 +1,42 @@
+{% extends '../../base.html.twig' %}
+
+{% block title %}Mesprojets{% endblock %}
+
+{% block body %}
+    <h1>Mesprojets</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mesprojet.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ mesprojet.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ mesprojet.content }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ mesprojet.date ? mesprojet.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Lien_github</th>
+                <td>{{ mesprojet.lienGithub }}</td>
+            </tr>
+            <tr>
+                <th>Lien_web</th>
+                <td>{{ mesprojet.lienWeb }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_mesprojets_index') }}">back to list</a>
+
+    <a href="{{ path('app_mesprojets_edit', {'id': mesprojet.id}) }}">edit</a>
+
+    {{ include('mesprojets/_delete_form.html.twig') }}
+{% endblock %}
