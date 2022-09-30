@@ -1,19 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>{% block title %}Concepteur Développeur d'Application!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         {% endblock %}
-
+        <meta name="description" content="" />
+        <meta property="fb:app_id" content="966242223397117" />
+        <meta property="og:site_name" content="Lefebvre Harold" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta property="og:type" content="profile" />
+        <meta property="og:title" content="Concepteur Développeur d'Application" />
+        <meta property="og:url" content="" />
+        <meta property="og:description" content="" />
+        <meta property="og:image" content="/assets/img/ms-icon-310x310.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/apple-icon-57x57.png"/>
+        <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/apple-icon-60x60.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/apple-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon-76x76.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/apple-icon-114x114.png"/>
+        <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/apple-icon-120x120.png"/>
+        <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/apple-icon-144x144.png"/>
+        <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/apple-icon-152x152.png"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-icon-180x180.png"/>
+        <link rel="icon" type="image/png" sizes="192x192"  href="/assets/img/android-icon-192x192.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon-96x96.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png"/>
+        <link rel="manifest" href="/manifest.json"/>
+        <link rel="preload" as="font" href="/assets/css/Milkshake.woff" crossorigin>
+        <link rel="preload" as="font" href="/assets/css/Milkshake.woff2" crossorigin>
+        <link rel="preload" as="image" href="/assets/img/1947484-min.webp">
+        <link rel="stylesheet" href="/assets/css/background.css?id=5">
+        <link rel="stylesheet" href="/assets/css/style.css?id=51">
+        <meta name="msapplication-TileColor" content="#ffffff"/>
+        <meta name="msapplication-TileImage" content="/assets/img/ms-icon-144x144.png"/>
+        <meta name="theme-color" content="#ffffff"/>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            <script src="https://kit.fontawesome.com/5d4e6def63.js" crossorigin="anonymous"></script>
         {% endblock %}
     </head>
     <body>
+    <header>
+        <nav class="navbar navbar-expand-sm  fixed-top navbar-light navbar-dark ">
+            <!--bouton sur mobile-->
+            <div class="container">
+                <a class="nav-brand navbar-text" href="#portfoliovu">Lefebvre Harold</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link"   href="#portfoliovu">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"   href="#main">Mon CV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="#contact">Contact</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
         {% block body %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
     </body>
 </html>

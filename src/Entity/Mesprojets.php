@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MesprojetsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=MesprojetsRepository::class)
@@ -14,31 +15,37 @@ class Mesprojets
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"show_projet"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"show_projet"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"show_projet"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="datetime")
+     *
      */
     private $date;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"show_projet"})
      */
     private $lien_github;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"show_projet"})
      */
     private $lien_web;
 

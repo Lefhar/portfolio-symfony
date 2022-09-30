@@ -6,17 +6,16 @@ use App\Repository\MesprojetsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
-class HomeController extends AbstractController
+/**
+ * @Route("/json")
+ */
+class JsonController extends AbstractController
 {
     /**
-     * @Route("/", name="app_home")
+     * @Route("/mesprojects", name="app_json")
      */
     public function index(MesprojetsRepository $mesprojetsRepository): Response
     {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'mesproject'=>$mesprojetsRepository->findAll(),
-        ]);
+      return $this->json($mesprojetsRepository->findAll(), 200, [], ['groups' => 'show_projet']);
     }
 }
