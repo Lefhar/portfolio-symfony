@@ -99,8 +99,7 @@ class Cv
         $string = preg_replace('#ý|ÿ#', 'y', $string);
         $string = preg_replace('#Ý#', 'Y', $string);
         $string = str_replace("'", '_', $string);
-        $string = str_replace(' ', '_', $string);
-        return $string;
+        return str_replace(' ', '_', $string);
     }
     public function removeBloccv(Bloccv $bloccv): self
     {
