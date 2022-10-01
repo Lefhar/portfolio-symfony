@@ -96,11 +96,10 @@
                     <div class="row cv">
                         <div class="col-lg-4 bg-belge padancre">
                             <div class="about-img">
-                                <?php if (!empty($pic)) {
-                                foreach ($pic as $obj) {
-                                    if ($obj->emplacement == "profil") { ?><?= $obj->content; ?><?php }
-                                                                                        }
-                                                                                    } ?>
+                                {{ dump(app.user) }}
+                                {% if app.user.photo is not null %}
+                                <img class="rounded" src="/assets/file/{{ app.user.photo }}" alt="" width="150" >
+                                {% endif %}
                             </div>
 
                             <?php foreach ($row as $obj) {

@@ -1,21 +1,38 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseconnexion.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}S'enregistrer!{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="card-header"><h3 class="text-center font-weight-light my-4">S'enregistrer</h3></div>
+                        <div class="card-body">
+                            {% for flash_error in app.flashes('verify_email_error') %}
+                                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                            {% endfor %}
+                            {{ form_start(registrationForm) }}
+                            {{ form_row(registrationForm.email) }}
+                            {{ form_row(registrationForm.plainPassword, {
+                                label: 'Mot de passe'
+                            }) }}
+                            {{ form_row(registrationForm.agreeTerms, {
+                                label: 'Accepte la CGU'
+                            }) }}
+                            <div class="mt-2">
+                                <button type="submit" class="btn btn-success">S'enregistrer</button>
+                            </div>
+                            {{ form_end(registrationForm) }}
+                        </div>
+                        <div class="card-footer text-center py-3">
+                            <div class="small"><a href="{{ path('app_login') }}">Déjà inscrit ? connexion</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <h1>Register</h1>
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
 {% endblock %}

@@ -28,9 +28,11 @@ class UserType extends AbstractType
                     'Admin' => 'ROLE_ADMIN',
                 ],
             ])
-            ->add('password',null,['required'=>false,'attr'=>['value'=>'']])
+            ->add('github')
+            ->add('linkedin')
+            ->add('password',null,['required'=>false,'attr'=>['value'=>''],'mapped'=>false])
             ->add('isVerified')
-            ->add('photo',FileType::class,['required'=>false,'attr'=>['accept'=>'image/*' , 'class'=>'form-control'],'data_class' => null])
+            ->add('photo',FileType::class,['required'=>false,'attr'=>['accept'=>'image/*' , 'class'=>'form-control'],'data_class' => null,'mapped'=>false])
         ;
         // Data transformer
         $builder->get('roles')

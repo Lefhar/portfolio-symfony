@@ -11699,3 +11699,10 @@ body {
     font-size: 0.75rem;
     border-radius: 0.25rem !important;
 }
+.about-img {
+    text-align: center;
+    padding: 7px;
+}
+.rounded {
+    border-radius: 10.25rem!important;
+}
