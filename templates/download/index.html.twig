@@ -31,9 +31,9 @@
 <div class="row">
     <div class="col-lg-4">
         <div class="about-img">
-            {% if app.user.photo is not null %}
+            {% if cv.users.photo is not null %}
                 <img class="img-fluid" src="" alt="">
-                <img class="rounded" src="{{ app.request.schemeAndHttpHost }}/assets/file/{{ app.user.photo }}" alt="" width="150">
+                <img class="rounded" src="{{ app.request.schemeAndHttpHost }}/assets/file/{{ cv.users.photo }}" alt="" width="150">
             {% endif %}
         </div>
         {% for row in cv.bloccvs %}
@@ -53,9 +53,9 @@
 					<img src="" alt="">
 					<a href="{{ app.request.schemeAndHttpHost }}" target="_blank" rel="noopener">
 						<img class="img-fluid" src="{{ app.request.schemeAndHttpHost }}/assets/file/world-wide-web.png" alt="{{ app.request.schemeAndHttpHost }}" width="30"></a>
-					<a title="github" href="{{ app.user.github }}" target="_blank" rel="noopener"><img class="img-fluid" src="{{ app.request.schemeAndHttpHost }}/assets/file/1200px-Octicons-mark-github.svg[1].png" alt="" width="30">
+					<a title="github" href="{{ cv.users.github }}" target="_blank" rel="noopener"><img class="img-fluid" src="{{ app.request.schemeAndHttpHost }}/assets/file/1200px-Octicons-mark-github.svg[1].png" alt="" width="30">
 					</a>
-					<a title="linkedin" href="{{ app.user.linkedin }}" target="_blank" rel="noopener"><img class="img-fluid" src="{{ app.request.schemeAndHttpHost }}/assets/file/linkedin1-min.png" alt="" width="37"></a>
+					<a title="linkedin" href="{{ cv.users.linkedin }}" target="_blank" rel="noopener"><img class="img-fluid" src="{{ app.request.schemeAndHttpHost }}/assets/file/linkedin1-min.png" alt="" width="37"></a>
 				</span>
         <div style="top: 158px;right: 0px;position: absolute;">
             <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={{ app.request.schemeAndHttpHost }}&choe=UTF-8" width="150" height="150">

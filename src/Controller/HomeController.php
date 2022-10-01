@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Form\MessageType;
+use App\Form\RecaptchaForm;
 use App\Repository\CvRepository;
 use App\Repository\MesprojetsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,11 +17,13 @@ class HomeController extends AbstractController
      */
     public function index(MesprojetsRepository $mesprojetsRepository, CvRepository $cvRepository): Response
     {
-        $cv = $cvRepository->findOneBy(['IsActive'=>1,'users'=>$this->getUser()]);
+        $cv = $cvRepository->findOneBy(['IsActive'=>1]);
+        $form = $this->createForm(MessageType::class);
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+
             'mesproject'=>$mesprojetsRepository->findAll(),
             'cv'=>$cv,
+            'form'=>$form->createView(),
         ]);
     }
 }

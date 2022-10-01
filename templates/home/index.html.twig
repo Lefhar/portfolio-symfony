@@ -98,8 +98,8 @@
                     <div class="row cv">
                         <div class="col-lg-4 bg-belge padancre">
                             <div class="about-img">
-                                {% if app.user.photo is not null %}
-                                    <img class="rounded" src="/assets/file/{{ app.user.photo }}" alt="" width="150">
+                                {% if cv.users.photo is not null %}
+                                    <img class="rounded" src="/assets/file/{{ cv.users.photo }}" alt="" width="150">
                                 {% endif %}
                             </div>
 
@@ -112,6 +112,7 @@
                             {% endfor %}
 
                         </div>
+
                         <div class="col-lg-8 padancre">
                             <a href="{{ path('app_download_pdf',{id:cv.id}) }}" target="_blank"
                                class="btn btn-primary downloadcv"><i class="fas fa-file-pdf text-danger bg-light"></i>
@@ -119,15 +120,15 @@
                             <span class="sociaux">
 
 <a title="portfolio " href="{{ app.request.schemeAndHttpHost }}" target="_blank" rel="noopener"><img class="rounded"
-                                                                                                     src="/assets/file/world-wide-web (1).png"
+                                                                                                     src="/assets/file/world-wide-web.png"
                                                                                                      alt="{{ app.request.schemeAndHttpHost }}"
                                                                                                      ></a>
                                 <a
-                                        title="github" href="{{ app.user.github }}" target="_blank"
+                                        title="github" href="{{ cv.users.github }}" target="_blank"
                                         rel="noopener"><img class="img-fluid"
                                                             src="/assets/file/1200px-Octicons-mark-github.svg[1].png"
                                                             alt="" width="30"> </a><a
-                                        title="linkedin" href="{{ app.user.linkedin }}"
+                                        title="linkedin" href="{{ cv.users.linkedin }}"
                                         target="_blank" rel="noopener"><img class="img-fluid"
                                                                             src="/assets/file/linkedin1-min.png"
                                                                             alt="" width="37"></a>
@@ -158,39 +159,46 @@
         <div class="container pt-5">
             <div class="row">
                 <div class="col-12">
-                    <div id="res" name="res"></div>
-                    <form action="/sendmail" method="POST" id="contactme" name="contactme">
-                        <div class="form-group">
-                            <label for="email">Votre Email</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                   placeholder=" Votre adresse email" required>
-                            <small id="emailHelp" class="form-text text-muted"></small>
-                        </div>
-                        <div class="form-group">
-                            <label for="sujet">Objet du message</label>
-                            <select id="sujet" name="sujet" class="form-control" required>
-                                <option value="">Séléctionnez le sujet</option>
-                                <option value="cv">Demande de CV</option>
-                                <option value="offre">Offre d'emploi</option>
-                                <option value="autreoffre">Autres offres</option>
-                                <option value="remarque">Remarque</option>
-                            </select>
-                        </div>
-                        <div class="form-group" id="boxmessage">
-                            <label for="message">Votre message</label>
-                            <textarea type="textarea" id="message" name="message" class="form-control"
-                                      rows="10"></textarea>
-                        </div>
-                        <?php
-                    helper(['form', 'reCaptcha']);
+                    <div id="res"></div>
+{#                    <form action="/sendmail" method="POST" id="contactme" name="contactme">#}
+{#                        <div class="form-group">#}
+{#                            <label for="email">Votre Email</label>#}
+{#                            <input type="email" class="form-control" id="email" name="email"#}
+{#                                   placeholder=" Votre adresse email" required>#}
+{#                            <small id="emailHelp" class="form-text text-muted"></small>#}
+{#                        </div>#}
+{#                        <div class="form-group">#}
+{#                            <label for="sujet">Objet du message</label>#}
+{#                            <select id="sujet" name="sujet" class="form-control" required>#}
+{#                                <option value="">Séléctionnez le sujet</option>#}
+{#                                <option value="cv">Demande de CV</option>#}
+{#                                <option value="offre">Offre d'emploi</option>#}
+{#                                <option value="autreoffre">Autres offres</option>#}
+{#                                <option value="remarque">Remarque</option>#}
+{#                            </select>#}
+{#                        </div>#}
+{#                        <div class="form-group" id="boxmessage">#}
+{#                            <label for="message">Votre message</label>#}
+{#                            <textarea type="textarea" id="message" name="message" class="form-control"#}
+{#                                      rows="10"></textarea>#}
+{#                        </div>#}
 
-                    try {
-                        echo reCaptcha2('reCaptcha2', ['id' => 'recaptcha_v2'], ['theme' => 'light']);
-                        } catch (Exception $e) {
-                        }
-                        ?>
-                        <button type="submit" class="btn btn-info">Envoyer</button>
-                    </form>
+
+{#                        <button type="submit" class="btn btn-info">Envoyer</button>#}
+{#                    </form>#}
+                    {{ form_start(form) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.sujet) }}
+                    <div class="form-group pb-2" id="boxmessage">
+                        {{ form_row(form.message) }}
+                    </div>
+                    {{ form_row(form.recaptcha) }}
+                    {# must be the same name of this put on the FormBuilder #}
+
+                    {{ form_errors(form.recaptcha) }}
+                    {# That will display the error of the captcha to user #}
+                    <button type="submit" class="btn btn-info">Envoyer</button>
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
