@@ -13,26 +13,52 @@ use Symfony\Component\Routing\Annotation\Route;
 class DownloadController extends AbstractController
 {
     /**
-     * @Route("/download", name="app_download")
+     * @Route("/download/cvview/{id}", name="app_download")
      */
-    public function index(): Response
+    public function index(Cv $cv): Response
     {
         return $this->render('download/index.html.twig', [
-            'controller_name' => 'DownloadController',
+            'cv' => $cv
         ]);
     }
 
     /**
-     * @Route("/download/cv/{id}", name="app_download")
+     * @Route("/download/cv/{id}", name="app_download_pdf")
      */
-    public function facturePdf(Pdf $knpSnappyPdf,Cv $cv)
+    public function cvPdf(Pdf $knpSnappyPdf,Cv $cv)
     {
 
         $html = $this->renderView('download/index.html.twig', array(
             'cv' => $cv
         ));
+        $knpSnappyPdf->setTimeout(120);
+        $knpSnappyPdf->setOption("enable-local-file-access",true); // added this
         return new PdfResponse(
-            $knpSnappyPdf->getOutputFromHtml($html),
+            $knpSnappyPdf->getOutputFromHtml($html, array(
+
+                'orientation' => 'portrait',
+
+                'page-height' => 297,
+
+                'page-width'  => 210,
+
+                'encoding' => 'utf-8',
+
+                'images' => true,
+
+                'dpi' => 72,
+
+                'enable-external-links' => true,
+
+                'enable-internal-links' => true,
+                'margin-top'=>0,
+                'margin-bottom'=>0,
+                'margin-left'=>0,
+                'margin-right'=>0,
+                'no-background'=>false,
+                'background'=>true
+
+            )),
             $cv->getTitleFile() . '.pdf'
         );
     }

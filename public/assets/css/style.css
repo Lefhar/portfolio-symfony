@@ -18,7 +18,7 @@
 .w-90{width:90%!important}
 .w-80{width:80%!important}
 .w-85{width:85%!important}
-.hrcv{background-color:#007bff;height:3px}
+.hrcv{background-color:#007bff;height:3px!important;opacity: 100;}
 .card-body{min-height:237px}
 nav a{position:relative;display:inline-block;font-size:2em;font-weight:800;color:#f0f8ff;overflow:hidden;background:linear-gradient(to right,#4169e1,#b6b6e6 50%,#f0f8ff 50%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 100%;background-position:100%;transition:background-position 275ms ease;text-decoration:none;padding-left:1px;padding-right:5px}
 nav a:hover{background-position:0 100%}
