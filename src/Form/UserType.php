@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -27,7 +28,7 @@ class UserType extends AbstractType
                     'Admin' => 'ROLE_ADMIN',
                 ],
             ])
-            ->add('password',PasswordType::class,['required'=>false,'attr'=>['value'=>'']])
+            ->add('password',null,['required'=>false,'attr'=>['value'=>'']])
             ->add('isVerified')
             ->add('photo',FileType::class,['required'=>false,'attr'=>['accept'=>'image/*' , 'class'=>'form-control'],'data_class' => null])
         ;
