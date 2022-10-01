@@ -36,54 +36,56 @@
                             {% if mesproject is not null %}
                                 {% for key,row in mesproject %}
 
-                                    <p><span id="intro{{ key }}" class="intro">{% if row.lienGithub %}git clone {{ row.lienGithub }}{% else %}wget {{ row.lienWeb }}{% endif %}</span></p>
+                                    <p><span id="intro{{ key }}"
+                                             class="intro">{% if row.lienGithub %}git clone {{ row.lienGithub }}{% else %}wget {{ row.lienWeb }}{% endif %}</span>
+                                    </p>
                                 {% endfor %}
                             {% endif %}
                         </div>
                     </div>
                 </div>
-                    <section class="portfolio" id="portfolio">
-                        <div class="row">
-                            {% if mesproject is not null %}
-                                {% for key,row in mesproject %}
-                                    <div class="col-sm-4 pt-2" id="projet{{ key }}">
-                                        <div class="card">
-                                            <div class="card-body">
+                <section class="portfolio" id="portfolio">
+                    <div class="row">
+                        {% if mesproject is not null %}
+                            {% for key,row in mesproject %}
+                                <div class="col-sm-4 pt-2" id="projet{{ key }}">
+                                    <div class="card">
+                                        <div class="card-body">
 
-                                                <h5 class="card-title"><a
-                                                            href="{% if row.lienWeb %}{{ row.lienWeb }}{% endif %}"
-                                                            target="_blank">{{ row.title }}</a></h5>
-                                                <p class="card-text">
-                                                    {{ row.content|raw }}
-                                                </p>
-                                                <p class="card-text text-center">
-                                                    {% if row.lienGithub %}
-                                                        <a href="{{ row.lienGithub }}" target="_blank"><img
-                                                                    class="img-fluid"
-                                                                    src="/assets/img/github-img.png"
-                                                                    width="35"
-                                                                    alt="{{ row.title }}"></a>
-                                                    {% endif %}
-                                                    {% if row.lienWeb %}
-                                                        <a href="{{ row.lienWeb }}" target="_blank"><img
-                                                                    class="img-fluid"
-                                                                    src="/assets/img/world-wide-web.png"
-                                                                    width="30"
-                                                                    alt="{{ row.title }}"></a>
-                                                    {% endif %}
+                                            <h5 class="card-title"><a
+                                                        href="{% if row.lienWeb %}{{ row.lienWeb }}{% endif %}"
+                                                        target="_blank">{{ row.title }}</a></h5>
+                                            <p class="card-text">
+                                                {{ row.content|raw }}
+                                            </p>
+                                            <p class="card-text text-center">
+                                                {% if row.lienGithub %}
+                                                    <a href="{{ row.lienGithub }}" target="_blank"><img
+                                                                class="img-fluid"
+                                                                src="/assets/img/github-img.png"
+                                                                width="35"
+                                                                alt="{{ row.title }}"></a>
+                                                {% endif %}
+                                                {% if row.lienWeb %}
+                                                    <a href="{{ row.lienWeb }}" target="_blank"><img
+                                                                class="img-fluid"
+                                                                src="/assets/img/world-wide-web.png"
+                                                                width="30"
+                                                                alt="{{ row.title }}"></a>
+                                                {% endif %}
 
 
-                                                </p>
-                                            </div>
+                                            </p>
                                         </div>
                                     </div>
-                                {% endfor %}
-                            {% endif %}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
 
 
-                        </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
+            </div>
 
         </div>
 
@@ -96,21 +98,18 @@
                     <div class="row cv">
                         <div class="col-lg-4 bg-belge padancre">
                             <div class="about-img">
-                                {{ dump(app.user) }}
                                 {% if app.user.photo is not null %}
-                                <img class="rounded" src="/assets/file/{{ app.user.photo }}" alt="" width="150" >
+                                    <img class="rounded" src="/assets/file/{{ app.user.photo }}" alt="" width="150">
                                 {% endif %}
                             </div>
 
-                            <?php foreach ($row as $obj) {
-                            if ($obj->emplacement == "left") {
-                            ?>
-                            <h3><?= $obj->title; ?></h3>
-                            <hr class="hrcv">
-                            <?= $obj->content; ?>
-                            <?php
-                            }
-                        } ?>
+                            {% for row in cv.bloccvs %}
+                                {% if row.emplacement =="left" %}
+                                    <h3>{{ row.title }}</h3>
+                                    <hr class="hrcv">
+                                    {{ row.content|raw }}
+                                {% endif %}
+                            {% endfor %}
 
                         </div>
                         <div class="col-lg-8 padancre">
@@ -119,21 +118,27 @@
                                 Télécharger le CV</a>
                             <span class="sociaux">
 
-                            <?php if (!empty($pic)) {
-                                foreach ($pic as $obj) {
-                                    if ($obj->emplacement == "sociaux") { ?><?= $obj->content; ?><?php }
-                                                                                    }
-                                                                                } ?>
+<a title="portfolio " href="{{ app.request.schemeAndHttpHost }}" target="_blank" rel="noopener"><img class="rounded"
+                                                                                                     src="/assets/file/world-wide-web (1).png"
+                                                                                                     alt="{{ app.request.schemeAndHttpHost }}"
+                                                                                                     ></a>
+                                <a
+                                        title="github" href="{{ app.user.github }}" target="_blank"
+                                        rel="noopener"><img class="img-fluid"
+                                                            src="/assets/file/1200px-Octicons-mark-github.svg[1].png"
+                                                            alt="" width="30"> </a><a
+                                        title="linkedin" href="{{ app.user.linkedin }}"
+                                        target="_blank" rel="noopener"><img class="img-fluid"
+                                                                            src="/assets/file/linkedin1-min.png"
+                                                                            alt="" width="37"></a>
                         </span>
-                            <?php foreach ($row as $obj) {
-                            if ($obj->emplacement == "right") {
-                            ?>
-                            <h3><?= $obj->title; ?></h3>
-                            <hr class="hrcv">
-                            <?= $obj->content; ?>
-                            <?php
-                            }
-                        } ?>
+                            {% for row in cv.bloccvs %}
+                                {% if row.emplacement =="right" %}
+                                    <h3>{{ row.title }}</h3>
+                                    <hr class="hrcv">
+                                    {{ row.content|raw }}
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

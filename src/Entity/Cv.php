@@ -35,10 +35,7 @@ class Cv
      */
     private $users;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Blocimage::class, mappedBy="cv")
-     */
-    private $blocimages;
+
 
     /**
      * @ORM\Column(type="boolean")
@@ -48,7 +45,6 @@ class Cv
     public function __construct()
     {
         $this->bloccvs = new ArrayCollection();
-        $this->blocimages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,35 +106,10 @@ class Cv
         return $this;
     }
 
-    /**
-     * @return Collection<int, Blocimage>
-     */
-    public function getBlocimages(): Collection
-    {
-        return $this->blocimages;
-    }
 
-    public function addBlocimage(Blocimage $blocimage): self
-    {
-        if (!$this->blocimages->contains($blocimage)) {
-            $this->blocimages[] = $blocimage;
-            $blocimage->setCv($this);
-        }
 
-        return $this;
-    }
 
-    public function removeBlocimage(Blocimage $blocimage): self
-    {
-        if ($this->blocimages->removeElement($blocimage)) {
-            // set the owning side to null (unless already changed)
-            if ($blocimage->getCv() === $this) {
-                $blocimage->setCv(null);
-            }
-        }
 
-        return $this;
-    }
 
     public function isIsActive(): ?bool
     {
