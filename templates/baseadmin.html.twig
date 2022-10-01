@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Dashboard - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
+    <link href="{{ asset('assets/css/admin.css') }}" rel="stylesheet"/>
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/tinymce/tinymce.min.js') }}"></script>
+    <link rel="icon" href="/favicon.ico">
+</head>
+
+<body class="sb-nav-fixed">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3 text-capitalize" href="{{ path('app_admin') }}">Adaptaforme Admin</a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+    <!-- Navbar Search-->
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        {# <div class="input-group"> #}
+        {# <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." #} {#
+        aria-describedby="btnNavbarSearch" /> #}
+        {# <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
+                        class="fas fa-search"></i></button> #}
+        {# </div> #}
+    </form>
+    <!-- Navbar-->
+    {% if app.user %}
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                    <li><a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                </ul>
+            </li>
+        </ul>
+    {% else %}
+        <a class="nav-link text-light" id="navbarDropdown" href="{{ path('app_login') }}"><i
+                    class="fas fa-user fa-fw"></i></a>
+
+    {% endif %}
+</nav>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+
+                    <div class="sb-sidenav-menu-heading">Gestion</div>
+
+                    <!--menu catégorie-->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                       data-bs-target="#collapseCategories" aria-expanded="false"
+                       aria-controls="collapseCategories">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Mes projets
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseCategories" aria-labelledby="headingOne"
+                         data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{{ path('app_mesprojets_index') }}">Liste des projects</a>
+                            <a class="nav-link" href="{{ path('app_mesprojets_new') }}">Ajouter un projet</a>
+                        </nav>
+                    </div>
+                    <!--fin menu catégorie-->
+                    <!--menu cv-->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                       data-bs-target="#collapseCv" aria-expanded="false"
+                       aria-controls="collapseCv">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Mes cv
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseCv" aria-labelledby="headingOne"
+                         data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{{ path('app_cv_index') }}">Liste des cv</a>
+                            <a class="nav-link" href="{{ path('app_cv_new') }}">Ajouter un cv</a>
+                        </nav>
+                    </div>
+                    <!--fin menu cv-->
+                    <!--menu bloccv-->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                       data-bs-target="#collapseBloccv" aria-expanded="false"
+                       aria-controls="collapseBloccv">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Mes bloc cv
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseBloccv" aria-labelledby="headingOne"
+                         data-bs-parent="#collapseBloccv">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{{ path('app_bloccv_index') }}">Liste des blocs cv</a>
+                            <a class="nav-link" href="{{ path('app_bloccv_new') }}">Ajouter un bloc cv</a>
+                        </nav>
+                    </div>
+                    <!--fin menu cv-->
+
+
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!--fin header-->
+    <!--content-->
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="row p-2">
+                <div class="container-fluid p-4">
+                    <div class="col-12">
+                        {% block body %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Adaptaforme {{ 'now' | date('Y') }}</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="/assets/js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="/assets/demo/chart-area-demo.js"></script>
+<script src="/assets/js/demo/chart-bar-demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="/assets/js/datatables-simple-demo.js"></script>
+<script>tinymce.init({
+        language: 'fr_FR',
+        height: "400",
+        selector: 'textarea.tinymce',
+        browser_spellcheck: true,
+        contextmenu: false,
+        plugins: 'visualblocks,codesample,emoticons,help,code,image,link,lists,media',
+        toolbar: "code| undo redo | styleselect | bold italic | link image | fontsizeselect | numlist bullist | media",
+        image_class_list: [{title: 'img-fluid', value: 'img-fluid'}, {
+            title: 'rounded',
+            value: 'rounded'
+        }, {title: 'w-100', value: 'w-100'},],
+        images_upload_url: '{{ path('app_upload') }}',
+        images_upload_handler: function (blobInfo, success, failure) {
+            let max_size_value = 2000
+            var image_size = blobInfo.blob().size / 1000;  // image size in kbytes
+            var max_size = max_size_value                // max size in kbytes
+            if (image_size > max_size) {
+                failure('image trop grosse ( ' + parseFloat(image_size / 1000).toFixed(2) + ' Mo) ,taille maximum est de : ' + parseFloat(max_size / 1000).toFixed(0) + ' Mo');
+                return;
+            } else {
+                var xhr, formData;
+                xhr = new XMLHttpRequest();
+                xhr.withCredentials = false;
+                xhr.open('POST', '{{ path('app_upload') }}');
+                xhr.upload.onprogress = function (e) {
+                    progress(e.loaded / e.total * 100);
+
+                };
+            }
+            xhr.onload = function () {
+                var json;
+                if (xhr.status === 403) {
+                    failure('HTTP Error: ' + xhr.status, {remove: true});
+                    return;
+                }
+                if (xhr.status < 200 || xhr.status >= 300) {
+                    failure('HTTP Error: ' + xhr.status);
+                    return;
+                }
+                json = JSON.parse(xhr.responseText);
+                if (!json || typeof json.location != 'string') {
+                    failure('Invalid JSON: ' + xhr.responseText);
+                    return;
+                }
+                success(json.location);
+            };
+            xhr.onerror = function () {
+                failure('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
+            };
+            formData = new FormData();
+            formData.append('file', blobInfo.blob(), blobInfo.filename());
+            xhr.send(formData);
+        },
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+    });</script>
+</body>
+
+</html>

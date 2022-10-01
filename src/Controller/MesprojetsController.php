@@ -35,6 +35,8 @@ class MesprojetsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $mesprojet->setContent($form->get('content')->getData());
+            $mesprojet->setDate(new  \DateTime());
             $mesprojetsRepository->add($mesprojet, true);
 
             return $this->redirectToRoute('app_mesprojets_index', [], Response::HTTP_SEE_OTHER);

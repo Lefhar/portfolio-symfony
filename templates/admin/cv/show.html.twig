@@ -1,0 +1,30 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Cv{% endblock %}
+
+{% block body %}
+    <h1>Cv</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cv.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ cv.title }}</td>
+            </tr>
+            <tr>
+                <th>IsActive</th>
+                <td>{{ cv.IsActive ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cv_index') }}">back to list</a>
+
+    <a href="{{ path('app_cv_edit', {'id': cv.id}) }}">edit</a>
+
+    {{ include('cv/_delete_form.html.twig') }}
+{% endblock %}

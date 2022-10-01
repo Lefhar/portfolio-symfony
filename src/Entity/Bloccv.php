@@ -2,58 +2,57 @@
 
 namespace App\Entity;
 
-use App\Repository\MesprojetsRepository;
+use App\Repository\BloccvRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ORM\Entity(repositoryClass=MesprojetsRepository::class)
+ * @ORM\Entity(repositoryClass=BloccvRepository::class)
+ * @ORM\Table(name="Bloccv", uniqueConstraints={@ORM\UniqueConstraint(name="idxUnique", columns={"emplacement", "position"})})
  */
-class Mesprojets
+class Bloccv
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"show_projet"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"show_projet"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"show_projet"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="datetime")
-     *
      */
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"show_projet"})
+     * @ORM\Column(type="string", length=5)
      */
-    private $lien_github;
+    private $emplacement;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"show_projet"})
+     * @ORM\Column(type="integer")
      */
-    private $lien_web;
+    private $position;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="mesprojets")
+     * @ORM\Column(type="boolean")
+     */
+    private $public;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Cv::class, inversedBy="bloccvs")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $users;
+    private $cv;
 
     public function getId(): ?int
     {
@@ -96,38 +95,50 @@ class Mesprojets
         return $this;
     }
 
-    public function getLienGithub(): ?string
+    public function getEmplacement(): ?string
     {
-        return $this->lien_github;
+        return $this->emplacement;
     }
 
-    public function setLienGithub(?string $lien_github): self
+    public function setEmplacement(string $emplacement): self
     {
-        $this->lien_github = $lien_github;
+        $this->emplacement = $emplacement;
 
         return $this;
     }
 
-    public function getLienWeb(): ?string
+    public function getPosition(): ?int
     {
-        return $this->lien_web;
+        return $this->position;
     }
 
-    public function setLienWeb(?string $lien_web): self
+    public function setPosition(int $position): self
     {
-        $this->lien_web = $lien_web;
+        $this->position = $position;
 
         return $this;
     }
 
-    public function getUsers(): ?User
+    public function isPublic(): ?bool
     {
-        return $this->users;
+        return $this->public;
     }
 
-    public function setUsers(?User $users): self
+    public function setPublic(bool $public): self
     {
-        $this->users = $users;
+        $this->public = $public;
+
+        return $this;
+    }
+
+    public function getCv(): ?Cv
+    {
+        return $this->cv;
+    }
+
+    public function setCv(?Cv $cv): self
+    {
+        $this->cv = $cv;
 
         return $this;
     }

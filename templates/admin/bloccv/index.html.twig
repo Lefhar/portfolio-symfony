@@ -1,0 +1,45 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Bloccv index{% endblock %}
+
+{% block body %}
+    <h1>Bloccv index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Date</th>
+                <th>Emplacement</th>
+                <th>Position</th>
+                <th>Public</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bloccv in bloccvs %}
+            <tr>
+                <td>{{ bloccv.id }}</td>
+                <td>{{ bloccv.title }}</td>
+                <td>{{ bloccv.content }}</td>
+                <td>{{ bloccv.date ? bloccv.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ bloccv.emplacement }}</td>
+                <td>{{ bloccv.position }}</td>
+                <td>{{ bloccv.public ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_bloccv_show', {'id': bloccv.id}) }}">show</a>
+                    <a href="{{ path('app_bloccv_edit', {'id': bloccv.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_bloccv_new') }}">Create new</a>
+{% endblock %}

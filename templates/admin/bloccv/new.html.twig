@@ -1,0 +1,11 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}New Bloccv{% endblock %}
+
+{% block body %}
+    <h1>Create new Bloccv</h1>
+
+    {{ include('admin/bloccv/_form.html.twig') }}
+
+    <a href="{{ path('app_bloccv_index') }}">back to list</a>
+{% endblock %}

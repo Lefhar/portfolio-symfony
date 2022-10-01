@@ -49,9 +49,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $mesprojets;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Cv::class, mappedBy="users")
+     */
+    private $cvs;
+
     public function __construct()
     {
         $this->mesprojets = new ArrayCollection();
+        $this->cvs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -183,5 +189,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Cv>
+     */
+    public function getCvs(): Collection
+    {
+        return $this->cvs;
+    }
+
+    public function addCv(Cv $cv): self
+    {
+        if (!$this->cvs->contains($cv)) {
+            $this->cvs[] = $cv;
+            $cv->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCv(Cv $cv): self
+    {
+        if ($this->cvs->removeElement($cv)) {
+            // set the owning side to null (unless already changed)
+            if ($cv->getUsers() === $this) {
+                $cv->setUsers(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getEmail();
     }
 }
