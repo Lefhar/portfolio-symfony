@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Form\MessageType;
-use App\Form\RecaptchaForm;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
