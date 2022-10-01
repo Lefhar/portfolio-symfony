@@ -20,13 +20,13 @@ class MessageType extends AbstractType
                 ->add('sujet', ChoiceType::class,[
                     'choices' => [
                         'Séléctionnez le sujet' => '',
-                        'cv' => 'Demande de CV',
-                        'offre' => 'Offre d\'emploi',
-                        'autreoffre' => 'Autres offres',
+                        'Demande de CV' => 'cv',
+                        'Offre d\'emploi' => 'offre',
+                        'Autres offres' => 'autreoffre',
                         'remarque' => 'Remarque',
                     ],'required'=>true
                 ])
-                ->add('message',TextareaType::class,['label'=>'Votre message','attr'=>['rows'=>10],'required'=>true])
+                ->add('message',TextareaType::class,['label'=>'Votre message','attr'=>['rows'=>10],'required'=>false])
                 ->add("recaptcha", ReCaptchaType::class);
         ;
     }

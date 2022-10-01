@@ -111,8 +111,9 @@ $("#contactme").submit(function (e) {
     });
 });
 $(document).ready(function () {
-    $("#sujet").change(function () {
+    $("#message_sujet").change(function () {
         var option = $(this).children("option:selected").val();
+        console.log(option.tex);
         if (option == "cv") {
 
             document.getElementById("boxmessage").style.display = "none";
