@@ -1,5 +1,19 @@
 {{ form_start(form) }}
-{#    {{ form_widget(form) }}#}
+{#    {{ form_widget(form) }} #}
+{{ form_label(form.title) }}
+    {{ form_widget(form.title) }}
+{{ form_label(form.content) }}
     {{ form_widget(form.content,{value:bloccv.content|raw}) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_label(form.emplacement) }}
+    {{ form_widget(form.emplacement) }}
+{{ form_label(form.position) }}
+    {{ form_widget(form.position) }}
+{{ form_label(form.public) }}
+    {{ form_widget(form.public) }}
+{{ form_label(form.cv) }}
+    {{ form_widget(form.cv) }}
+<div class="form-group pt-2">
+    <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+    <a href="{{ path('app_bloccv_index') }}" class="btn btn-dark">Retour</a>
+</div>
 {{ form_end(form) }}

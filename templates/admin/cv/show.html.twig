@@ -4,27 +4,56 @@
 
 {% block body %}
     <h1>Cv</h1>
+    {{ dump(cv) }}
+<div class="container">
+    <div class="row">
+<div class="col-xl-4 col-lg-4">
+    {% if app.user.photo %}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ cv.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ cv.title }}</td>
-            </tr>
-            <tr>
-                <th>IsActive</th>
-                <td>{{ cv.IsActive ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="about-img">
+        <img class="rounded" src="{{ app.user.photo }}" alt="" width="150" > <a href="https://lefebvreharold.fr/admin/editpicture/6"><i class="fas fa-edit"></i></a>
+    </div>
+    {% endif %}
+        {% for row in cv.bloccvs %}
+            {% if row.emplacement == "left" %}
+           <h5> {{ row.title }}</h5>
+                <hr class="hrcv">
+                {{ row.content|raw }}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+<div class="col-xl-8 col-lg-8">
+    {% for row in cv.bloccvs %}
+        {% if row.emplacement == "right" %}
+            <h5> {{ row.title }}</h5>
+            <hr class="hrcv">
+            {{ row.content|raw }}
+        {% endif %}
+    {% endfor %}
+</div>
+    </div>
+</div>
+{#    <table class="table">#}
+{#        <tbody>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <td>{{ cv.id }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Title</th>#}
+{#                <td>{{ cv.title }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>IsActive</th>#}
+{#                <td>{{ cv.IsActive ? 'Yes' : 'No' }}</td>#}
+{#            </tr>#}
+{#        </tbody>#}
+{#    </table>#}
 
     <a href="{{ path('app_cv_index') }}">back to list</a>
 
     <a href="{{ path('app_cv_edit', {'id': cv.id}) }}">edit</a>
 
-    {{ include('cv/_delete_form.html.twig') }}
+    {{ include('admin/cv/_delete_form.html.twig') }}
 {% endblock %}
