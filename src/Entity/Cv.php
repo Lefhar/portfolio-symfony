@@ -81,7 +81,27 @@ class Cv
 
         return $this;
     }
-
+    public function getTitleFile()
+    {
+        $string = $this->getTitle();
+        $string = preg_replace('#Ç#', 'C', $string);
+        $string = preg_replace('#ç#', 'c', $string);
+        $string = preg_replace('#è|é|ê|ë#', 'e', $string);
+        $string = preg_replace('#È|É|Ê|Ë#', 'E', $string);
+        $string = preg_replace('#à|á|â|ã|ä|å#', 'a', $string);
+        $string = preg_replace('#@|À|Á|Â|Ã|Ä|Å#', 'A', $string);
+        $string = preg_replace('#ì|í|î|ï#', 'i', $string);
+        $string = preg_replace('#Ì|Í|Î|Ï#', 'I', $string);
+        $string = preg_replace('#ð|ò|ó|ô|õ|ö#', 'o', $string);
+        $string = preg_replace('#Ò|Ó|Ô|Õ|Ö#', 'O', $string);
+        $string = preg_replace('#ù|ú|û|ü#', 'u', $string);
+        $string = preg_replace('#Ù|Ú|Û|Ü#', 'U', $string);
+        $string = preg_replace('#ý|ÿ#', 'y', $string);
+        $string = preg_replace('#Ý#', 'Y', $string);
+        $string = str_replace("'", '_', $string);
+        $string = str_replace(' ', '_', $string);
+        return $string;
+    }
     public function removeBloccv(Bloccv $bloccv): self
     {
         if ($this->bloccvs->removeElement($bloccv)) {
