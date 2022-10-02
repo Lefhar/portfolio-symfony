@@ -1,0 +1,25 @@
+{# templates/bundles/TwigBundle/Exception/error500.html.twig #}
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+    <div class="headerwebsite" id="portfoliovu" style="height: 100vh;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 haut">
+
+                    <div class="alert alert-danger  mt-5" role="alert">
+                        <h1 >Accès interdit</h1>
+                        <p >
+                            Accès interdit retourner sûr <a href="{{ path('app_home') }}">l'accueil</a>.
+                        </p>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

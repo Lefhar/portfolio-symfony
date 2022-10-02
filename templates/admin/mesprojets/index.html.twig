@@ -10,10 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Title</th>
-                <th>Content</th>
                 <th>Date</th>
-                <th>Lien_github</th>
-                <th>Lien_web</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,10 +19,8 @@
             <tr>
                 <td>{{ mesprojet.id }}</td>
                 <td>{{ mesprojet.title }}</td>
-                <td>{{ mesprojet.content }}</td>
                 <td>{{ mesprojet.date ? mesprojet.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ mesprojet.lienGithub }}</td>
-                <td>{{ mesprojet.lienWeb }}</td>
+
                 <td>
                     <a href="{{ path('app_mesprojets_show', {'id': mesprojet.id}) }}">show</a>
                     <a href="{{ path('app_mesprojets_edit', {'id': mesprojet.id}) }}">edit</a>

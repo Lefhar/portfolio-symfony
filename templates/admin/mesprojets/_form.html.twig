@@ -1,4 +1,21 @@
+{#{{ form_start(form) }}#}
+{#    {{ form_widget(form) }}#}
+{#    <button class="btn">{{ button_label|default('Save') }}</button>#}
+{#{{ form_end(form) }}#}
+
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{#    {{ form_widget(form) }} #}
+{{ form_label(form.title) }}
+    {{ form_widget(form.title) }}
+{{ form_label(form.content) }}
+    {{ form_widget(form.content,{value:mesprojet.content|raw}) }}
+{{ form_label(form.lien_github) }}
+    {{ form_widget(form.lien_github,{value:mesprojet.lienGithub|raw}) }}
+{{ form_label(form.lien_web) }}
+    {{ form_widget(form.lien_web,{value:mesprojet.lienWeb|raw}) }}
+
+<div class="form-group pt-2">
+    <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+    <a href="{{ path('app_bloccv_index') }}" class="btn btn-dark">Retour</a>
+</div>

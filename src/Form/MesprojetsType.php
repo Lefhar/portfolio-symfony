@@ -14,11 +14,9 @@ class MesprojetsType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content',TextareaType::class,['mapped'=>false,'attr'=>['class'=>'form-control tinymce'],'required'=>false])
-            ->add('date')
+            ->add('content',TextareaType::class,['mapped'=>false,'attr'=>['class'=>'form-control tinymce'],'required'=>false,'data_class'=>null])
             ->add('lien_github')
             ->add('lien_web')
-            ->add('users')
         ;
     }
 

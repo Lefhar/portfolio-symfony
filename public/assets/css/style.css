@@ -1,9 +1,9 @@
 @font-face{font-family:Milkshake;font-display:swap;src:local('Milkshake'),url(Milkshake.woff2) format('woff'),url(Milkshake.woff2) format('woff2')}
 @media (min-width:300px) and (max-width:767px){
-.navbar-expand-sm{color:#f0f8ff;font-size:1.2em;background-color:#1a1717}
+    .navbar-expand-sm{color:#f0f8ff;font-size:1.2em;background-color:#1a1717}
 }
 @media (min-width:640px) and (max-width:1024px) and (orientation:landscape){
-.navbar-expand-sm{color:#f0f8ff;font-size:1.2em;background-color:transparent}
+    .navbar-expand-sm{color:#f0f8ff;font-size:1.2em;background-color:transparent}
 }
 .navbar{font-family:Milkshake,Arial,serif;color:#f0f8ff;font-size:1.2em}
 .navbar-light .navbar-text{color:#f0f8ff;font-size:1.2em;text-decoration:none}
@@ -18,7 +18,7 @@
 .w-90{width:90%!important}
 .w-80{width:80%!important}
 .w-85{width:85%!important}
-.hrcv{background-color:#007bff;height:3px!important;opacity: 100;}
+.hrcv{background-color:#007bff;height:3px!important;opacity:100}
 .card-body{min-height:237px}
 nav a{position:relative;display:inline-block;font-size:2em;font-weight:800;color:#f0f8ff;overflow:hidden;background:linear-gradient(to right,#4169e1,#b6b6e6 50%,#f0f8ff 50%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 100%;background-position:100%;transition:background-position 275ms ease;text-decoration:none;padding-left:1px;padding-right:5px}
 nav a:hover{background-position:0 100%}
@@ -28,25 +28,8 @@ textarea{resize:none}
 .minimize{font-size:16px;color:#000}
 .overlay{position:fixed;width:80%;height:80%;left:10%;top:95px;background:#000;z-index:10000;border-left:solid 5px #f7f5f3;border-right:solid 5px #f7f5f3;border-bottom:solid 5px #f7f5f3;border-top:solid 27px #f7f5f3;background-color:#000408;border-radius:.1vw;min-height:356px;color:#f0f8ff;font-size:.7em}
 .rounded{border-radius:10.25rem!important}
-/**[id^="intro"]#text { width: 0px; height: 2em; white-space: nowrap; overflow: hidden;  }*/
-.intro {
-    visibility:hidden;
-
-}
-
-a {
-    color: #007bff!important;
-    text-decoration: none;
-    background-color: transparent!important;
-}
-a:hover {
-    text-decoration: underline!important;
-}
-.text{
-    word-wrap: break-word!important;
-}
-.btn-primary {
-    color: #fff!important;
-    background-color: #0d6efd!important;
-    border-color: #0d6efd!important;
-}
+.intro{visibility:hidden}
+a{color:#007bff!important;text-decoration:none;background-color:transparent!important}
+a:hover{text-decoration:underline!important}
+.text{word-wrap:break-word!important}
+.btn-primary{color:#fff!important;background-color:#0d6efd!important;border-color:#0d6efd!important}

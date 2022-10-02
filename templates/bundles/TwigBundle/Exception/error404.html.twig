@@ -1,0 +1,20 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="headerwebsite" id="portfoliovu" style="height: 100vh;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 haut">
+                    <div class="alert alert-warning mt-5" role="alert">
+                        <h1 >Page introuvable</h1>
+                        <p  >
+                            Page introuvable retourner sûr <a href="{{ path('app_home') }}">l'accueil</a>.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

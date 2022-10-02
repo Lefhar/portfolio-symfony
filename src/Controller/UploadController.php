@@ -28,7 +28,7 @@ class UploadController extends AbstractController
             if (move_uploaded_file($fichier['tmp_name'],'assets/file/'.$name)) {
 
                 return $this->json([
-                    'location' => '../../../assets/file/'.$name,
+                    'location' => '/assets/file/'.$name,
 
                 ], 201
                 );
