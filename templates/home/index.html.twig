@@ -192,10 +192,8 @@
                     <div class="form-group" id="boxmessage">
                         {{ form_row(form.message) }}
                     </div>
-                    <div class="form-group pt-2" id="boxmessage">
+                    <div class="form-group pt-2" >
                     {{ form_row(form.recaptcha) }}
-                    {# must be the same name of this put on the FormBuilder #}
-
                     {{ form_errors(form.recaptcha) }}
                     </div>
                     {# That will display the error of the captcha to user #}

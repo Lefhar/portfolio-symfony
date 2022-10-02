@@ -35,10 +35,18 @@ textarea{resize:none}
 }
 
 a {
-    color: #007bff;
+    color: #007bff!important;
     text-decoration: none;
-    background-color: transparent;
+    background-color: transparent!important;
 }
 a:hover {
-    text-decoration: underline;
+    text-decoration: underline!important;
+}
+.text{
+    word-wrap: break-word!important;
+}
+.btn-primary {
+    color: #fff!important;
+    background-color: #0d6efd!important;
+    border-color: #0d6efd!important;
 }

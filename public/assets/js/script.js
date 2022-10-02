@@ -112,8 +112,8 @@ $("#contactme").submit(function (e) {
 });
 $(document).ready(function () {
     $("#message_sujet").change(function () {
-        var option = $(this).children("option:selected").val();
-        console.log(option.tex);
+        let option = $(this).children("option:selected").val();
+
         if (option == "cv") {
 
             document.getElementById("boxmessage").style.display = "none";

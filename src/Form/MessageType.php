@@ -27,7 +27,8 @@ class MessageType extends AbstractType
                     ],'required'=>true
                 ])
                 ->add('message',TextareaType::class,['label'=>'Votre message','attr'=>['rows'=>10],'required'=>false])
-                ->add("recaptcha", ReCaptchaType::class);
+                ->add("recaptcha", ReCaptchaType::class)
+            ;
         ;
     }
 
