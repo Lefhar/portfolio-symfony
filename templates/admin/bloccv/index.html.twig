@@ -21,7 +21,7 @@
         {% for bloccv in bloccvs %}
             <tr>
                 <td>{{ bloccv.id }}</td>
-                <td>{{ bloccv.title }}</td>
+                <td>{{ bloccv.title|upper }}</td>
                 <td>{{ bloccv.date ? bloccv.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ bloccv.emplacement }}</td>
                 <td>{{ bloccv.position }}</td>

@@ -158,12 +158,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-<script src="/assets/js/script.js"></script>
+<script src="{{ asset('assets/js/script.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="/assets/demo/chart-area-demo.js"></script>
-<script src="/assets/js/demo/chart-bar-demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-<script src="/assets/js/datatables-simple-demo.js"></script>
+<script src="{{ asset('assets/js/demo/datatables-demo.js') }}"></script>
 <script>tinymce.init({
         language: 'fr_FR',
         height: "400",
@@ -178,14 +176,14 @@
         }, {title: 'w-100', value: 'w-100'},],
         images_upload_url: '{{ path('app_upload') }}',
         images_upload_handler: function (blobInfo, success, failure) {
+            let xhr;
             let max_size_value = 2000
-            var image_size = blobInfo.blob().size / 1000;  // image size in kbytes
-            var max_size = max_size_value                // max size in kbytes
+            let image_size = blobInfo.blob().size / 1000;  // image size in kbytes
+            let max_size = max_size_value                // max size in kbytes
             if (image_size > max_size) {
                 failure('image trop grosse ( ' + parseFloat(image_size / 1000).toFixed(2) + ' Mo) ,taille maximum est de : ' + parseFloat(max_size / 1000).toFixed(0) + ' Mo');
                 return;
             } else {
-                var xhr, formData;
                 xhr = new XMLHttpRequest();
                 xhr.withCredentials = false;
                 xhr.open('POST', '{{ path('app_upload') }}');
@@ -195,7 +193,7 @@
                 };
             }
             xhr.onload = function () {
-                var json;
+                let json;
                 if (xhr.status === 403) {
                     failure('HTTP Error: ' + xhr.status, {remove: true});
                     return;
@@ -214,7 +212,7 @@
             xhr.onerror = function () {
                 failure('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
             };
-            formData = new FormData();
+            let formData = new FormData();
             formData.append('file', blobInfo.blob(), blobInfo.filename());
             xhr.send(formData);
         },
