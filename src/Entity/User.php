@@ -69,10 +69,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $linkedin;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Demarchage::class, mappedBy="users")
+     */
+    private $demarchages;
+
     public function __construct()
     {
         $this->mesprojets = new ArrayCollection();
         $this->cvs = new ArrayCollection();
+        $this->demarchages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -273,6 +279,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLinkedin(?string $linkedin): self
     {
         $this->linkedin = $linkedin;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Demarchage>
+     */
+    public function getDemarchages(): Collection
+    {
+        return $this->demarchages;
+    }
+
+    public function addDemarchage(Demarchage $demarchage): self
+    {
+        if (!$this->demarchages->contains($demarchage)) {
+            $this->demarchages[] = $demarchage;
+            $demarchage->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDemarchage(Demarchage $demarchage): self
+    {
+        if ($this->demarchages->removeElement($demarchage)) {
+            // set the owning side to null (unless already changed)
+            if ($demarchage->getUsers() === $this) {
+                $demarchage->setUsers(null);
+            }
+        }
 
         return $this;
     }
