@@ -18,20 +18,20 @@ class SendmailController extends AbstractController
      * @Route("/sendmail", name="app_sendmail")
      * @throws TransportExceptionInterface
      */
-    public function index(Request $request, MailerInterface $mailer,CvRepository $cvRepository): Response
+    public function index(Request $request, MailerInterface $mailer, CvRepository $cvRepository): Response
     {
 
         $baseurl = $request->getSchemeAndHttpHost();
-        $cv = $cvRepository->findOneBy(['IsActive'=>1]);
+        $cv = $cvRepository->findOneBy(['IsActive' => 1]);
         $form = $this->createForm(MessageType::class);
         $form->handleRequest($request);
-        if($form->isSubmitted()&&$form->isValid())
-        {
+        $errors = "";
+        $success = "";
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            if($form->get('sujet')->getData()=="cv")
-            {
+            if ($form->get('sujet')->getData() == "cv") {
                 $email = (new TemplatedEmail())
-                    ->attachFromPath(getcwd().'/assets/file/'.$cv->getTitleFile().'.pdf',$cv->getTitleFile().'.pdf')
+                    ->attachFromPath(getcwd() . '/assets/file/' . $cv->getTitleFile() . '.pdf', $cv->getTitleFile() . '.pdf')
                     ->from('contact@lefebvreharold.fr')
                     ->to($form->get('email')->getData())
                     ->subject("demande de cv")
@@ -39,16 +39,15 @@ class SendmailController extends AbstractController
                         'sujet' => $form->get('sujet')->getData(),
                         'mail' => $form->get('email')->getData(),
                         'message' => $form->get('message')->getData(),
-                        'linkedin'=>$cv->getUsers()->getLinkedin(),
-                        'github'=>$cv->getUsers()->getGithub(),
-                        'base'=>$baseurl
+                        'linkedin' => $cv->getUsers()->getLinkedin(),
+                        'github' => $cv->getUsers()->getGithub(),
+                        'base' => $baseurl
                     ])
-                    ->htmlTemplate('sendmail/cvemail.html.twig')
-                 ;
+                    ->htmlTemplate('sendmail/cvemail.html.twig');
 
                 $mailer->send($email);
 
-            }else{
+            } else {
                 $email = (new TemplatedEmail())
                     ->to('contact@lefebvreharold.fr')
                     ->from($form->get('email')->getData())
@@ -57,19 +56,23 @@ class SendmailController extends AbstractController
                         'sujet' => $form->get('sujet')->getData(),
                         'mail' => $form->get('email')->getData(),
                         'message' => $form->get('message')->getData(),
-                        'linkedin'=>$cv->getUsers()->getLinkedin(),
-                        'github'=>$cv->getUsers()->getGithub(),
-                        'base'=>$baseurl
+                        'linkedin' => $cv->getUsers()->getLinkedin(),
+                        'github' => $cv->getUsers()->getGithub(),
+                        'base' => $baseurl
                     ])
-                    ->htmlTemplate('sendmail/email.html.twig')
-                ;
+                    ->htmlTemplate('sendmail/email.html.twig');
                 $mailer->send($email);
             }
 
-        }
-        return $this->render('sendmail/index.html.twig', [
-            'form' => $form,
+            return $this->json(["success" => "Votre message a bien été envoyé", "error" => $errors]);
+        } else {
+            foreach ($form->getErrors(true, true) as $formError) {
+                $errors = $formError->getMessage();
+            }
 
-        ]);
+            return $this->json(["success" => $success, "error" => $errors]);
+        }
+
+
     }
 }

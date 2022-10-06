@@ -106,15 +106,28 @@ $("#contactme").submit(function (e) {
         type: form_method,
         data: form_data
     }).done(function (response) {
-        $("#res").html(response);
-        $("#contactme").css("display", "none");
-        setTimeout(function () {
-            $("#res").html("");
-            $("#message_sujet").val('0').change();
-            $("#contactme").css("display", "");
-            $('#message_email').val("");
-            $('#message_message').val("");
-        }, 18000)
+        console.log(response);
+        // let dataJson = $.parseJSON(response);
+        // console.log(dataJson);
+        if (response.error !=="") {
+            $("#res").html(`<div class="alert alert-danger" role="alert">
+  ${response.error}
+</div>`);
+        } else {
+            $("#res").html(`<div class="alert alert-success" role="alert">
+  ${response.success}
+</div>`);
+            $("#contactme").css("display", "none");
+            setTimeout(function () {
+                $("#res").html("");
+                $("#message_sujet").val('0').change();
+                $("#contactme").css("display", "");
+                $('#message_email').val("");
+                $('#message_message').val("");
+            }, 8000)
+        }
+        //  $("#res").html();
+
     });
 });
 $(document).ready(function () {
