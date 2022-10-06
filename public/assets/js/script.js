@@ -38,9 +38,9 @@ if (document.getElementsByClassName('intro')) {
             });
             delay_start += delay * letters.length;
             let id = elem.id
-            console.log('projet' + parseInt(id.match(/(\d+)/)));
+          //  console.log('projet' + parseInt(id.match(/(\d+)/)));
             //    fondu('projet'+parseInt(id.match(/(\d+)/)))
-            console.log(delay_start);
+         //   console.log(delay_start);
             setTimeout(function () {
                 fondu('projet' + parseInt(elem.id.match(/(\d+)/)))
             }, delay_start);
@@ -100,13 +100,13 @@ $("#contactme").submit(function (e) {
     const form_url = $(this).attr("action"); //récupérer l'URL du formulaire
     const form_method = "POST"; //récupérer la méthode GET/POST du formulaire
     const form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
-    console.log(form_data);
+    //console.log(form_data);
     $.ajax({
         url: form_url,
         type: form_method,
         data: form_data
     }).done(function (response) {
-        console.log(response);
+        //console.log(response);
         // let dataJson = $.parseJSON(response);
         // console.log(dataJson);
         if (response.error !=="") {

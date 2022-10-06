@@ -63,16 +63,14 @@ class SendmailController extends AbstractController
                     ->htmlTemplate('sendmail/email.html.twig');
                 $mailer->send($email);
             }
-
-            return $this->json(["success" => "Votre message a bien été envoyé", "error" => $errors]);
+            $success = "Votre message a bien été envoyé";
         } else {
             foreach ($form->getErrors(true, true) as $formError) {
                 $errors = $formError->getMessage();
             }
 
-            return $this->json(["success" => $success, "error" => $errors]);
         }
 
-
+        return $this->json(["success" => $success, "error" => $errors]);
     }
 }
