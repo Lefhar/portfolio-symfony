@@ -73,7 +73,7 @@ class MesprojetsController extends AbstractController
             $mesprojet->setContent($form->get('content')->getData());
 
             $mesprojetsRepository->add($mesprojet, true);
-            dump($form->get('content')->getData());
+           // dump($form->get('content')->getData());
             return $this->redirectToRoute('app_mesprojets_index', [], Response::HTTP_SEE_OTHER);
         }
 

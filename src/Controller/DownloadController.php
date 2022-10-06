@@ -7,6 +7,7 @@ use App\Repository\CvRepository;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Knp\Snappy\Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use function PHPUnit\Framework\fileExists;
@@ -28,7 +29,10 @@ class DownloadController extends AbstractController
      */
     public function cvPdf(Pdf $knpSnappyPdf,Cv $cv)
     {
-
+        if(file_exists(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf'))
+        {
+            return $this->file(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf');
+        }
         $html = $this->renderView('download/index.html.twig', array(
             'cv' => $cv
         ));
@@ -60,11 +64,8 @@ class DownloadController extends AbstractController
 
             )
         );
-            if(file_exists(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf'))
-            {
-                unlink(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf');
-            }
-        file_put_contents(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf', $pdf);
+
+       // file_put_contents(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf', $pdf);
 
         return new PdfResponse(
             $knpSnappyPdf->getOutputFromHtml($html, array(

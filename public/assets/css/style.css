@@ -26,10 +26,11 @@ textarea{resize:none}
 .close-windows{font-size:19px;color:#000}
 .maximize{font-size:16px;color:#000;padding:5px}
 .minimize{font-size:16px;color:#000}
-.overlay{position:fixed;width:80%;height:80%;left:10%;top:95px;background:#000;z-index:10000;border-left:solid 5px #f7f5f3;border-right:solid 5px #f7f5f3;border-bottom:solid 5px #f7f5f3;border-top:solid 27px #f7f5f3;background-color:#000408;border-radius:.1vw;min-height:356px;color:#f0f8ff;font-size:.7em}
+.overlay{position:fixed;width:80%;height:80%;left:10%;top:95px;z-index:10000;border-left:solid 5px #f7f5f3;border-right:solid 5px #f7f5f3;border-bottom:solid 5px #f7f5f3;border-top:solid 27px #f7f5f3;background-color:#000408;border-radius:.1vw;min-height:356px;color:#f0f8ff;font-size:.7em}
 .rounded{border-radius:10.25rem!important}
 .intro{visibility:hidden}
 a{color:#007bff!important;text-decoration:none;background-color:transparent!important}
 a:hover{text-decoration:underline!important}
 .text{word-wrap:break-word!important}
 .btn-primary{color:#fff!important;background-color:#0d6efd!important;border-color:#0d6efd!important}
+.erreur{height: 100vh;}

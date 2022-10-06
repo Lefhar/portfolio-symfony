@@ -2,9 +2,9 @@ if (document.getElementsByClassName('intro')) {
     window.addEventListener("DOMContentLoaded", (event) => {
         animate_text();
     });
+
 // -------------------
-    function animate_text()
-    {
+    function animate_text() {
         let delay = 20,
             delay_start = 0,
             contents,
@@ -38,18 +38,17 @@ if (document.getElementsByClassName('intro')) {
             });
             delay_start += delay * letters.length;
             let id = elem.id
-            console.log('projet'+parseInt(id.match(/(\d+)/)));
-        //    fondu('projet'+parseInt(id.match(/(\d+)/)))
+            console.log('projet' + parseInt(id.match(/(\d+)/)));
+            //    fondu('projet'+parseInt(id.match(/(\d+)/)))
             console.log(delay_start);
             setTimeout(function () {
                 fondu('projet' + parseInt(elem.id.match(/(\d+)/)))
-            },delay_start);
+            }, delay_start);
         });
     }
 
 
 }
-
 
 
 function fondu(nomDiv) {
@@ -108,6 +107,14 @@ $("#contactme").submit(function (e) {
         data: form_data
     }).done(function (response) {
         $("#res").html(response);
+        $("#contactme").css("display", "none");
+        setTimeout(function () {
+            $("#res").html("");
+            $("#message_sujet").val('0').change();
+            $("#contactme").css("display", "");
+            $('#message_email').val("");
+            $('#message_message').val("");
+        }, 18000)
     });
 });
 $(document).ready(function () {
