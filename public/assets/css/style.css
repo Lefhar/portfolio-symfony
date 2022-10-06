@@ -29,8 +29,14 @@ textarea{resize:none}
 .overlay{position:fixed;width:80%;height:80%;left:10%;top:95px;z-index:10000;border-left:solid 5px #f7f5f3;border-right:solid 5px #f7f5f3;border-bottom:solid 5px #f7f5f3;border-top:solid 27px #f7f5f3;background-color:#000408;border-radius:.1vw;min-height:356px;color:#f0f8ff;font-size:.7em}
 .rounded{border-radius:10.25rem!important}
 .intro{visibility:hidden}
-a{color:#007bff!important;text-decoration:none;background-color:transparent!important}
-a:hover{text-decoration:underline!important}
+a{color:#007bff!important;text-decoration:none;background-color:transparent!important;}
+a:hover,
+a:visited,
+a:focus{text-decoration:none!important}
 .text{word-wrap:break-word!important}
-.btn-primary{color:#fff!important;background-color:#0d6efd!important;border-color:#0d6efd!important}
+.btn-link:hover{text-decoration:none!important;}
+.btn:hover,
+.btn:visited,
+.btn:focus{text-decoration:none!important}
 .erreur{height: 100vh;}
+.btn-primary {color: #fff!important;background-color: #007bff!important;border-color: #007bff!important;}
