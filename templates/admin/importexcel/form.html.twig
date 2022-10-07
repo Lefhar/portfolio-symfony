@@ -1,0 +1,115 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Hello ImportexcelController!{% endblock %}
+
+{% block body %}
+
+
+
+    {{ form_start(form) }}
+    {{ form_row(form) }}
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Valider</button>
+        <a href="{{ path('app_admin') }}" class="btn btn-dark">Retour</a>
+    </div>
+    {{ form_end(form) }}
+    {# {{ dump(excel) }} #}
+    {#    {{ dump(demarche) }} #}
+    {% if excel !="" %}
+
+        {% for key,colonne in excel %}
+
+            {% if key==0 %}
+                <div class="row">
+                <div class="col mt-5">
+                <form action="{{ path('app_importexcel_database') }}"  method="post">
+                <input type="hidden" name="fichier" value="{{ fichier }}">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>de</th>
+                        <th>vers</th>
+                    </tr>
+                    </thead>
+
+
+                    {% for key2,ligne in demarche %}
+                        <tbody>
+                        <tr>
+
+                            <td>{{ ligne }}
+                            </td>
+                            <td>
+                                <select name="de[]" class="form-control">
+                                    <option value="">Sélectionnez la colonne correspondante</option>
+                                    {% for key3,row in colonne %}
+                                        <option value="{{ key3 }}">{{ row }}</option>
+                                    {% endfor %}
+                                </select></td>
+                        </tr>
+                        </tbody>
+
+
+
+
+                    {% endfor %}
+
+
+                </table>
+            {% endif %}
+
+        {% endfor %}
+        <div class="form-group pt-2">
+            <button type="submit" class="btn btn-success">Valider</button>
+            <a href="{{ path('app_admin') }}" class="btn btn-dark">Retour</a>
+        </div>
+        </form>
+        </div>
+        </div>
+        {#        <div class="col mt-5"> #}
+        {#            <h1>10 Premiéres lignes du fichier excel</h1> #}
+        {#            <table class="table table-striped"> #}
+
+        {#                {% for key,colonne in excel %} #}
+
+        {#                    {% if key==0 %} #}
+        {#                        <thead> #}
+        {#                        <tr> #}
+        {#                            {% for ligne in colonne %} #}
+        {#                                {% if ligne %} #}
+        {#                                    <th>{{ ligne }}</th> #}
+        {#                                {% endif %} #}
+
+        {#                            {% endfor %} #}
+        {#                        </tr> #}
+        {#                        </thead> #}
+
+        {#                    {% endif %} #}
+
+        {#                    {% if key!=0 %} #}
+        {#                        <tbody> #}
+        {#                        {% if key<=10 %} #}
+        {#                            <tr> #}
+
+        {#                                {% for ligne in colonne %} #}
+
+
+        {#                                    <td>{{ ligne }}</td> #}
+
+
+        {#                                {% endfor %} #}
+
+        {#                            </tr> #}
+
+        {#                        {% endif %} #}
+        {#                        </tbody> #}
+
+        {#                    {% endif %} #}
+
+
+        {#                {% endfor %} #}
+        {#            </table> #}
+        {#        </div> #}
+    {% endif %}
+
+{% endblock %}

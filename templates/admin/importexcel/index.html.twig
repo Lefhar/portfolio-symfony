@@ -1,0 +1,48 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Contact index{% endblock %}
+
+{% block body %}
+    <h1>Contact index</h1>
+
+    <table class="table table-striped" id="excel">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Société</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Telephone</th>
+                <th>Mobile</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in demarchage %}
+            <tr>
+                <td>{{ row.id }}</td>
+
+                <td>{{ row.date ? row.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ row.name|upper }}</td>
+                <td>{{ row.email }}</td>
+                <td>{{ row.adresse }}</td>
+                <td>{{ row.codepostal }}</td>
+                <td>{{ row.ville }}</td>
+                <td>{{ row.telephone }}</td>
+                <td>{{ row.mobile }}</td>
+                <td>{{ row.status?'Envoyé':'En attente' }}</td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_importexcel') }}">Importer un nouveau fichier</a>
+{% endblock %}

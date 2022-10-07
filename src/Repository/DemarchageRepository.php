@@ -39,6 +39,12 @@ class DemarchageRepository extends ServiceEntityRepository
         }
     }
 
+    public function show_Columns()
+    {
+
+       $con = $this->getEntityManager()->getConnection();
+        return $con->executeQuery("SHOW COLUMNS from Demarchage")->fetchAllAssociative();
+    }
 //    /**
 //     * @return Demarchage[] Returns an array of Demarchage objects
 //     */

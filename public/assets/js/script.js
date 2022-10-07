@@ -94,7 +94,15 @@ $(document).on('click', 'a[href^="#"]', function (event) {
         scrollTop: $($.attr(this, 'href')).offset().top
     }, 500);
 });
+if (document.getElementById('excel')) {
+    $('#excel').DataTable({
 
+
+        "pageLength": 10,
+        responsive: true
+
+    });
+}
 $("#contactme").submit(function (e) {
     e.preventDefault(); //empêcher une action par défaut
     const form_url = $(this).attr("action"); //récupérer l'URL du formulaire

@@ -13,6 +13,9 @@
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/tinymce/tinymce.min.js') }}"></script>
     <link rel="icon" href="{{ asset('favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/>
+
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -106,6 +109,23 @@
                     </div>
                     <!--fin menu cv-->
 
+                    <!--menu demarchage-->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                       data-bs-target="#collapseDemarchage" aria-expanded="false"
+                       aria-controls="collapseDemarchage">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Démarchage
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseDemarchage" aria-labelledby="headingOne"
+                         data-bs-parent="#collapseDemarchage">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{{ path('app_demarche_list') }}">Liste des contacts</a>
+                            <a class="nav-link" href="{{ path('app_importexcel') }}">Importer une nouvelle liste</a>
+                        </nav>
+                    </div>
+                    <!--fin menu cv-->
+
 
                     <!--menu user-->
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -158,10 +178,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-<script src="{{ asset('assets/js/script.js') }}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-<script src="{{ asset('assets/js/demo/datatables-demo.js') }}"></script>
+{#<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>#}
+{#<script src="{{ asset('assets/js/demo/datatables-demo.js') }}"></script>#}
+<script src="{{ asset('assets/js/script.js') }}"></script>
 <script>tinymce.init({
         language: 'fr_FR',
         height: "400",
@@ -218,6 +239,8 @@
         },
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
     });</script>
-</body>
 
+
+
+</body>
 </html>
