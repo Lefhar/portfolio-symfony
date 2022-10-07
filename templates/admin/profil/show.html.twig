@@ -22,7 +22,7 @@
 
             <tr>
                 <th>IsVerified</th>
-                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+                <td>{{ user.isVerified ? 'Yes' : ("<a href=\""~path('app_resendemail')~"\" target=\"_blank\">resend email</a>")|raw }}</td>
             </tr>
             <tr>
                 <th>Photo</th>

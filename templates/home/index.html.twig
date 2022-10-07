@@ -56,8 +56,21 @@
                                                         href="{% if row.lienWeb %}{{ row.lienWeb }}{% endif %}"
                                                         target="_blank">{{ row.title }}</a></h5>
                                             <p class="card-text">
+
+
+                                            <div class="overlay-image ">
+                                                <a title="{{ row.title }}" href="{{ row.lienWeb?row.lienWeb:row.lienGithub }}" target="_blank" rel="noopener">
+
+                                                    <img class="w-100" src="assets/file/{{ row.image }}" alt="{{ row.title }}"  title="{{ row.title }}" width="250" />
+                                                <div class="hover">
+                                                    <div class="cathover">
                                                 {{ row.content|raw }}
-                                            </p>
+                                                    </div>
+                                                </div>
+                                                </a>
+                                            </div>
+
+
                                             <p class="card-text text-center">
                                                 {% if row.lienGithub %}
                                                     <a href="{{ row.lienGithub }}" target="_blank"><img
@@ -197,7 +210,7 @@
                     {{ form_errors(form.recaptcha) }}
                     </div>
                     {# That will display the error of the captcha to user #}
-                    <button type="submit" class="btn btn-info">Envoyer</button>
+                    <button type="submit" class="btn btn-info" id="submit">Envoyer</button>
                     {{ form_end(form) }}
                 </div>
             </div>

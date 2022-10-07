@@ -1,13 +1,20 @@
-{#{{ form_start(form) }}#}
-{#    {{ form_widget(form) }}#}
-{#    <button class="btn">{{ button_label|default('Save') }}</button>#}
-{#{{ form_end(form) }}#}
+{# {{ form_start(form) }} #}
+{#    {{ form_widget(form) }} #}
+{#    <button class="btn">{{ button_label|default('Save') }}</button> #}
+{# {{ form_end(form) }} #}
 
 
 {{ form_start(form) }}
 {#    {{ form_widget(form) }} #}
 {{ form_label(form.title) }}
     {{ form_widget(form.title) }}
+{{ form_label(form.image) }}
+{% if mesprojet.image %}
+    <div class="p-2">
+        <img class="img-fluid" src="/assets/file/{{ mesprojet.image }}" width="250" alt="{{ mesprojet.title }}">
+    </div>
+{% endif %}
+    {{ form_widget(form.image) }}
 {{ form_label(form.content) }}
     {{ form_widget(form.content,{value:mesprojet.content|raw}) }}
 {{ form_label(form.lien_github) }}

@@ -38,6 +38,17 @@ class MesprojetsController extends AbstractController
             $mesprojet->setContent($form->get('content')->getData());
             $mesprojet->setDate(new  \DateTime());
             $mesprojet->setUsers($this->getUser());
+            if (!empty($form->get('image')->getData() && $form->get('image')->getData() != null)) {
+                $fichier = $form->get('image')->getData();
+                $aMimeTypes = array("image/gif", "image/jpeg", "image/jpg", "image/png", "image/x-png", "image/tiff", "image/webp");
+                if (in_array($fichier->getClientmimeType(), $aMimeTypes)) {
+                    if ($fichier->move('assets/file/', $fichier->getClientOriginalName())) {
+                        $mesprojet->setImage($fichier->getClientOriginalName());
+
+                    }
+                }
+
+            }
             $mesprojetsRepository->add($mesprojet, true);
 
             return $this->redirectToRoute('app_mesprojets_index', [], Response::HTTP_SEE_OTHER);
@@ -71,7 +82,17 @@ class MesprojetsController extends AbstractController
             $mesprojet->setUsers($this->getUser());
             $mesprojet->setDate(new \DateTime());
             $mesprojet->setContent($form->get('content')->getData());
+            if (!empty($form->get('image')->getData() && $form->get('image')->getData() != null)) {
+                $fichier = $form->get('image')->getData();
+                $aMimeTypes = array("image/gif", "image/jpeg", "image/jpg", "image/png", "image/x-png", "image/tiff", "image/webp");
+                if (in_array($fichier->getClientmimeType(), $aMimeTypes)) {
+                    if ($fichier->move('assets/file/', $fichier->getClientOriginalName())) {
+                        $mesprojet->setImage($fichier->getClientOriginalName());
 
+                    }
+                }
+
+            }
             $mesprojetsRepository->add($mesprojet, true);
            // dump($form->get('content')->getData());
             return $this->redirectToRoute('app_mesprojets_index', [], Response::HTTP_SEE_OTHER);

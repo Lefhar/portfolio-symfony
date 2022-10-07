@@ -100,6 +100,7 @@ $("#contactme").submit(function (e) {
     const form_url = $(this).attr("action"); //récupérer l'URL du formulaire
     const form_method = "POST"; //récupérer la méthode GET/POST du formulaire
     const form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
+    $('#submit').prop('disabled', true);
     //console.log(form_data);
     $.ajax({
         url: form_url,
@@ -113,6 +114,7 @@ $("#contactme").submit(function (e) {
             $("#res").html(`<div class="alert alert-danger" role="alert">
   ${response.error}
 </div>`);
+            $('#submit').prop('disabled', false);
         } else {
             $("#res").html(`<div class="alert alert-success" role="alert">
   ${response.success}
@@ -124,6 +126,7 @@ $("#contactme").submit(function (e) {
                 $("#contactme").css("display", "");
                 $('#message_email').val("");
                 $('#message_message').val("");
+                $('#submit').prop('disabled', false);
             }, 8000)
         }
         //  $("#res").html();
