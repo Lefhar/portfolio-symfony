@@ -1,13 +1,11 @@
 {% extends 'baseadmin.html.twig' %}
 
-{% block title %}Edit Mesprojets{% endblock %}
+{% block title %}Edit Mes projets{% endblock %}
 
 {% block body %}
-    <h1>Edit Mesprojets</h1>
+    <h1>Edit Mes projets</h1>
 
     {{ include('admin/mesprojets/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_mesprojets_index') }}">back to list</a>
 
-    {{ include('admin/mesprojets/_delete_form.html.twig') }}
 {% endblock %}
