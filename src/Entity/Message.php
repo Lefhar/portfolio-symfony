@@ -28,15 +28,17 @@ class Message
     private $content;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      */
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Demarchage::class, inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $demarchage;
+    private $users;
+
+
 
     public function getId(): ?int
     {
@@ -79,15 +81,17 @@ class Message
         return $this;
     }
 
-    public function getDemarchage(): ?Demarchage
+    public function getUsers(): ?User
     {
-        return $this->demarchage;
+        return $this->users;
     }
 
-    public function setDemarchage(?Demarchage $demarchage): self
+    public function setUsers(?User $users): self
     {
-        $this->demarchage = $demarchage;
+        $this->users = $users;
 
         return $this;
     }
+
+
 }
