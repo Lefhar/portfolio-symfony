@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Demarchage;
 use App\Form\DemarchageType;
 use App\Repository\DemarchageRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +37,7 @@ class DemarchageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $demarchage->setStatus(0);
-            $demarchage->setDate(new \DateTime());
+            $demarchage->setDate(new DateTime());
             $demarchageRepository->add($demarchage, true);
 
             return $this->redirectToRoute('app_demarchage_index', [], Response::HTTP_SEE_OTHER);
@@ -68,7 +69,7 @@ class DemarchageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $demarchage->setStatus(0);
-            $demarchage->setDate(new \DateTime());
+            $demarchage->setDate(new DateTime());
             $demarchageRepository->add($demarchage, true);
 
             return $this->redirectToRoute('app_demarchage_index', [], Response::HTTP_SEE_OTHER);
