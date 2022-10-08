@@ -53,7 +53,7 @@ class DemarchageController extends AbstractController
      */
     public function show(Demarchage $demarchage): Response
     {
-        return $this->render('demarchage/show.html.twig', [
+        return $this->render('admin/demarchage/show.html.twig', [
             'demarchage' => $demarchage,
         ]);
     }
