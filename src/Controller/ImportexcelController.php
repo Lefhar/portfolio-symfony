@@ -42,6 +42,7 @@ class ImportexcelController extends AbstractController
 
             if (!empty($form->get('excel')->getData() && $form->get('excel')->getData() != null)) {
                 $fichier = $form->get('excel')->getData();
+                dump($fichier->getClientmimeType());
                 $aMimeTypes = array("application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
                 dump($fichier->getClientmimeType());
                 if (in_array($fichier->getClientmimeType(), $aMimeTypes)) {
@@ -49,7 +50,7 @@ class ImportexcelController extends AbstractController
 //                    $mesprojet->setImage($fichier->getClientOriginalName());
                         $xlsx = SimpleXLSX::parse(getcwd() . '/assets/file/excel/' . $fichier->getClientOriginalName())->rows();
                         $fichier = $fichier->getClientOriginalName();
-                        dump($xlsx);
+                       // dump($xlsx);
                     }
                 }
 
