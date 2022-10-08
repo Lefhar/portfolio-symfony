@@ -1,0 +1,13 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Edit Message{% endblock %}
+
+{% block body %}
+    <h1>Edit Message</h1>
+
+    {{ include('admin/message/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+
+    {{ include('admin/message/_delete_form.html.twig') }}
+{% endblock %}

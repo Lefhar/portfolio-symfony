@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Form\MessageType;
+use App\Form\ContactType;
 use App\Form\RecaptchaForm;
 use App\Repository\CvRepository;
 use App\Repository\MesprojetsRepository;
@@ -19,7 +19,7 @@ class HomeController extends AbstractController
     public function index(MesprojetsRepository $mesprojetsRepository, CvRepository $cvRepository,Request $request): Response
     {
         $cv = $cvRepository->findOneBy(['IsActive'=>1]);
-        $form = $this->createForm(MessageType::class);
+        $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
         return $this->render('home/index.html.twig', [
 

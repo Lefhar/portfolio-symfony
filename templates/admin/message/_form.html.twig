@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+    {{ form_label(form.title) }}
+    {{ form_widget(form.title) }}
+
+{{ form_label(form.content) }}
+    {{ form_widget(form.content,{value:message.content|raw}) }}
+<div class="form-group pt-1">
+    <button class="btn btn-success">{{ button_label|default('Valider') }}</button>
+    <a href="{{ path('app_message_index') }}" class="btn btn-dark">Retour</a>
+</div>
+{{ form_end(form) }}

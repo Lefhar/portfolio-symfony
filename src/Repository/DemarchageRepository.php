@@ -38,7 +38,13 @@ class DemarchageRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+        public function updateStatus()
+        {
+            return $this->createQueryBuilder('d')->update(Demarchage::class,'s')
+                ->where('s.status=:actuel')
+                ->set('s.status',0)
+                ->setParameter('actuel',1)->getQuery()->execute();
+        }
     public function show_Columns()
     {
 

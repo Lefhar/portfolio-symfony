@@ -109,6 +109,22 @@
                     </div>
                     <!--fin menu cv-->
 
+                    <!--menu campagne-->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                       data-bs-target="#collapseCampagne" aria-expanded="false"
+                       aria-controls="collapseCampagne">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Campagne
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseCampagne" aria-labelledby="headingOne"
+                         data-bs-parent="#collapseCampagne">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{{ path('app_message_index') }}">Liste des campagnes</a>
+                            <a class="nav-link" href="{{ path('app_message_new') }}">Créer une campagne</a>
+                        </nav>
+                    </div>
+                    <!--fin menu cv-->
                     <!--menu demarchage-->
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                        data-bs-target="#collapseDemarchage" aria-expanded="false"
@@ -125,7 +141,7 @@
                             <a class="nav-link" href="{{ path('app_importexcel') }}">Importer une nouvelle liste</a>
                         </nav>
                     </div>
-                    <!--fin menu cv-->
+                    <!--fin menu demarchage-->
 
 
                     <!--menu user-->

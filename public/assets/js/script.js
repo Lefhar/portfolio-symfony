@@ -130,10 +130,10 @@ $("#contactme").submit(function (e) {
             $("#contactme").css("display", "none");
             setTimeout(function () {
                 $("#res").html("");
-                $("#message_sujet").val('0').change();
+                $("#contact_sujet").val('0').change();
                 $("#contactme").css("display", "");
-                $('#message_email').val("");
-                $('#message_message').val("");
+                $('#contact_email').val("");
+                $('#contact_message').val("");
                 $('#submit').prop('disabled', false);
             }, 8000)
         }
@@ -142,10 +142,10 @@ $("#contactme").submit(function (e) {
     });
 });
 $(document).ready(function () {
-    $("#message_sujet").change(function () {
+    $("#contact_sujet").change(function () {
         let option = $(this).children("option:selected").val();
 
-        if (option == "cv") {
+        if (option === "cv") {
 
             document.getElementById("boxmessage").style.display = "none";
         } else {

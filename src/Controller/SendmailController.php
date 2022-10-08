@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Form\MessageType;
+use App\Form\ContactType;
 use App\Repository\CvRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,7 +23,7 @@ class SendmailController extends AbstractController
 
         $baseurl = $request->getSchemeAndHttpHost();
         $cv = $cvRepository->findOneBy(['IsActive' => 1]);
-        $form = $this->createForm(MessageType::class);
+        $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
         $errors = "";
         $success = "";
