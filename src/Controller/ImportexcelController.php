@@ -18,17 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ImportexcelController extends AbstractController
 {
-    /**
-     * @Route("/listecontact", name="app_demarche_list")
-     */
-    public function index(DemarchageRepository $demarchageRepository)
-    {
-        return $this->render('admin/importexcel/index.html.twig', [
 
-            'demarchage' => $demarchageRepository->findAll(),
-
-        ]);
-    }
     /**
      * @Route("/importexcel", name="app_importexcel")
      */
@@ -44,7 +34,6 @@ class ImportexcelController extends AbstractController
                 $fichier = $form->get('excel')->getData();
                 dump($fichier->getClientmimeType());
                 $aMimeTypes = array("application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-                dump($fichier->getClientmimeType());
                 if (in_array($fichier->getClientmimeType(), $aMimeTypes)) {
                     if ($fichier->move('assets/file/excel/', $fichier->getClientOriginalName())) {
 //                    $mesprojet->setImage($fichier->getClientOriginalName());
@@ -85,20 +74,7 @@ class ImportexcelController extends AbstractController
         ini_set('max_execution_time', 0);
         if ($request->get('fichier')) {
             $xlsx = SimpleXLSX::parse(getcwd() . '/assets/file/excel/' . $request->get('fichier'))->rows();
-
-
-            foreach ($request->get('de') as $row) {
-                if ($row !== "") {
-                    $table[] = $row;
-                }
-
-
-            }
-//dump($request->get('de'));
-
             unset($xlsx[0]);
-            // asort($xlsx);
-//dump($xlsx);
 
             foreach ($xlsx as $key => $colonne) {
                 if (!empty($colonne[$request->get('de')[2]])) {

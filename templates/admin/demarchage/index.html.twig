@@ -1,0 +1,51 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Demarchage index{% endblock %}
+
+{% block body %}
+    <h1>Demarchage index</h1>
+
+    <table class="table table-striped" id="excel">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Adresse</th>
+                <th>Codepostal</th>
+                <th>Ville</th>
+                <th>Telephone</th>
+                <th>Mobile</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for demarchage in demarchages %}
+            <tr>
+                <td>{{ demarchage.id }}</td>
+                <td>{{ demarchage.name }}</td>
+                <td>{{ demarchage.email }}</td>
+                <td>{{ demarchage.status ? 'Yes' : 'No' }}</td>
+                <td>{{ demarchage.date ? demarchage.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ demarchage.adresse }}</td>
+                <td>{{ demarchage.codepostal }}</td>
+                <td>{{ demarchage.ville }}</td>
+                <td>{{ demarchage.telephone }}</td>
+                <td>{{ demarchage.mobile }}</td>
+                <td>
+                    <a href="{{ path('app_demarchage_show', {'id': demarchage.id}) }}">show</a>
+                    <a href="{{ path('app_demarchage_edit', {'id': demarchage.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_demarchage_new') }}">Create new</a>
+{% endblock %}

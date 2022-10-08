@@ -1,0 +1,58 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Demarchage{% endblock %}
+
+{% block body %}
+    <h1>Demarchage</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ demarchage.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ demarchage.name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ demarchage.email }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ demarchage.status ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ demarchage.date ? demarchage.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ demarchage.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Codepostal</th>
+                <td>{{ demarchage.codepostal }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ demarchage.ville }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ demarchage.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ demarchage.mobile }}</td>
+            </tr>
+        </tbody>
+    </table>
+<div class="form-group pt-1">
+    <a href="{{ path('app_demarchage_index') }}" class="btn btn-dark">Retour</a>
+
+    <a href="{{ path('app_demarchage_edit', {'id': demarchage.id}) }}" class="btn btn-primary">Editer</a>
+</div>
+
+{% endblock %}

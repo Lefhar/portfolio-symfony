@@ -40,12 +40,14 @@
                             <td>{{ ligne }}
                             </td>
                             <td>
-                                <select name="de[]" class="form-control">
-                                    <option value="">Sélectionnez la colonne correspondante</option>
-                                    {% for key3,row in colonne %}
-                                        <option value="{{ key3 }}">{{ row }}</option>
-                                    {% endfor %}
-                                </select></td>
+                                <label>
+                                    <select name="de[]" class="form-control">
+                                        <option value="">Sélectionnez la colonne correspondante</option>
+                                        {% for key3,row in colonne %}
+                                            <option value="{{ key3 }}">{{ row }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </label></td>
                         </tr>
                         </tbody>
 

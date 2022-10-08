@@ -1,0 +1,13 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Edit Demarchage{% endblock %}
+
+{% block body %}
+    <h1>Edit Demarchage</h1>
+
+    {{ include('admin/demarchage/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+
+    {{ include('admin/demarchage/_delete_form.html.twig') }}
+{% endblock %}
