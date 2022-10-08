@@ -8,8 +8,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,6 +23,11 @@ class UserType extends AbstractType
             ->add('email')
             ->add('nom')
             ->add('prenom')
+            ->add('telephone')
+            ->add('contact',EmailType::class)
+            ->add('adresse')
+            ->add('codepostal')
+            ->add('ville')
             ->add('roles', ChoiceType::class, [
                 'required' => true,
                 'multiple' => false,
