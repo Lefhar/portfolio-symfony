@@ -37,6 +37,8 @@ class SendmailController extends AbstractController
                     ->subject("demande de cv")
                     ->context([
                         'sujet' => $form->get('sujet')->getData(),
+                        'nom'=> $cv->getUsers()->getNom(),
+                        'prenom'=>$cv->getUsers()->getPrenom(),
                         'mail' => $form->get('email')->getData(),
                         'message' => $form->get('message')->getData(),
                         'linkedin' => $cv->getUsers()->getLinkedin(),

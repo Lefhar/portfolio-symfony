@@ -29,6 +29,8 @@ class CronController extends AbstractController
             ->subject($message->getTitle())
             ->context([
                 'mail'=>$message->getUsers()->getEmail(),
+                'nom'=>$message->getUsers()->getNom(),
+                'prenom'=>$message->getUsers()->getPrenom(),
                 'sujet' => $message->getTitle(),
                 'message' => $message->getContent(),
                 'linkedin' => $message->getUsers()->getLinkedin(),
