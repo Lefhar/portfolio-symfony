@@ -70,6 +70,11 @@ class Demarchage
      */
     private $mobile;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $unsubscribe;
+
 
 
 
@@ -194,6 +199,18 @@ class Demarchage
     public function setMobile(?string $mobile): self
     {
         $this->mobile = $mobile;
+
+        return $this;
+    }
+
+    public function isUnsubscribe(): ?bool
+    {
+        return $this->unsubscribe;
+    }
+
+    public function setUnsubscribe(bool $unsubscribe): self
+    {
+        $this->unsubscribe = $unsubscribe;
 
         return $this;
     }
