@@ -85,7 +85,7 @@ class CronController extends AbstractController
                 'base' => $baseurl
             ])
             ->htmlTemplate('sendmail/campagneemail.html.twig');
-        $email->getHeaders()->addHeader('List-Unsubscribe', '<mailto:contact@lefebvreharold.fr>,<'.$baseurl.'/unsubscribe/'.$demarche->getEmail().'>');
+        $email->getHeaders()->addHeader('List-Unsubscribe', '<mailto:'.$message->getUsers()->getEmail().'>,<'.$baseurl.'/unsubscribe/'.$demarche->getEmail().'>');
 
         $mailer->send($email);
         $demarche->setStatus(1);
