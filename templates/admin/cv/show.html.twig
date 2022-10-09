@@ -51,8 +51,10 @@
 {#        </tbody>#}
 {#    </table>#}
 
-    <a href="{{ path('app_cv_index') }}">back to list</a>
 
-    <a href="{{ path('app_cv_edit', {'id': cv.id}) }}">edit</a>
+    <div class="form-group pt-1">
+        <a href="{{ path('app_cv_index') }}" class="btn btn-dark">Retour</a>
 
+        <a href="{{ path('app_cv_edit', {'id': cv.id}) }}" class="btn btn-primary">Editer</a>
+    </div>
 {% endblock %}

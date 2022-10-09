@@ -4,8 +4,19 @@
 
 {% block body %}
     <h1>Create new Bloccv</h1>
-
+    {% if app.user.contact
+        and app.user.nom
+        and app.user.prenom
+        and app.user.adresse
+        and app.user.codepostal
+        and app.user.ville
+        and app.user.telephone
+    %}
     {{ include('admin/bloccv/_form.html.twig') }}
 
-
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            Vous devez absolument remplir votre profil entièrement (nom, prenom, adresse, code postal, ville, téléphone, email de contact) <a href=" {{ path('app_profil_edit',{id:app.user.id}) }}">Complétez ici</a>
+        </div>
+    {% endif %}
 {% endblock %}
