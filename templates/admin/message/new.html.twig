@@ -16,7 +16,7 @@
     {{ include('admin/message/_form.html.twig') }}
     {% else %}
         <div class="alert alert-warning" role="alert">
-           Vous devez absolument remplir votre profil entièrement (nom, prenom, adresse, code postal, ville, email de contact) <a href=" {{ path('app_profil_edit',{id:app.user.id}) }}">Complétez ici</a>
+           Vous devez absolument remplir votre profil entièrement (nom, prenom, adresse, code postal, ville, téléphone, email de contact) <a href=" {{ path('app_profil_edit',{id:app.user.id}) }}">Complétez ici</a>
         </div>
     {% endif %}
 
