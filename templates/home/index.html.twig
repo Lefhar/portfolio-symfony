@@ -134,9 +134,9 @@
                                 Télécharger le CV</a>
                             <span class="sociaux">
 
-<a title="portfolio " href="{{ app.request.schemeAndHttpHost }}" target="_blank" rel="noopener"><img class="rounded"
+<a title="portfolio " href="{{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}" target="_blank" rel="noopener"><img class="rounded"
                                                                                                      src="{{ asset('/assets/file/world-wide-web.png') }}"
-                                                                                                     alt="{{ app.request.schemeAndHttpHost }}"
+                                                                                                     alt="{{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}"
     ></a>{% if cv.users.github %}
                                 <a
                                     title="github" href="{{ cv.users.github }}" target="_blank"

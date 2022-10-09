@@ -33,14 +33,14 @@
         <div class="about-img">
             {% if cv.users.photo is not null %}
                 <img class="img-fluid" src="" alt="">
-                <img class="rounded" src="{{ app.request.schemeAndHttpHost }}/assets/file/{{ cv.users.photo }}" alt="" width="150">
+                <img class="rounded" src="{{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}/assets/file/{{ cv.users.photo }}" alt="" width="150">
             {% endif %}
         </div>
         {% for row in cv.bloccvs %}
             {% if row.emplacement =="left" %}
                 <h3>{{ row.title|upper }}</h3>
                 <hr class="hrcv">
-                {{ row.content|replace({'../..':app.request.schemeAndHttpHost})|raw }}
+                {{ row.content|replace({'../..':app.request.schemeAndHttpHost})|replace({'http://':'https://'})|raw }}
             {% endif %}
         {% endfor %}
     </div>
@@ -51,20 +51,20 @@
         <span class="sociaux" style="margin-top: 7px">
 
 					<img src="" alt="">
-					<a href="{{ app.request.schemeAndHttpHost }}" target="_blank" rel="noopener">
-						<img class="img-fluid" src="{{ app.request.schemeAndHttpHost }}/assets/file/world-wide-web.png" alt="{{ app.request.schemeAndHttpHost }}" width="30"></a>
-					<a title="github" href="{{ cv.users.github }}" target="_blank" rel="noopener"><img class="img-fluid" src="{{ app.request.schemeAndHttpHost }}/assets/file/1200px-Octicons-mark-github.svg[1].png" alt="" width="30">
+					<a href="{{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}" target="_blank" rel="noopener">
+						<img class="img-fluid" src="{{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}/assets/file/world-wide-web.png" alt="{{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}" width="30"></a>
+					<a title="github" href="{{ cv.users.github }}" target="_blank" rel="noopener"><img class="img-fluid" src="{{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}/assets/file/1200px-Octicons-mark-github.svg[1].png" alt="" width="30">
 					</a>
-					<a title="linkedin" href="{{ cv.users.linkedin }}" target="_blank" rel="noopener"><img class="img-fluid" src="{{ app.request.schemeAndHttpHost }}/assets/file/linkedin1-min.png" alt="" width="37"></a>
+					<a title="linkedin" href="{{ cv.users.linkedin }}" target="_blank" rel="noopener"><img class="img-fluid" src="{{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}/assets/file/linkedin1-min.png" alt="" width="37"></a>
 				</span>
         <div style="top: 158px;right: 0px;position: absolute;">
-            <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={{ app.request.schemeAndHttpHost }}&choe=UTF-8" width="150" height="150">
+            <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}&choe=UTF-8" width="150" height="150">
         </div>
         {% for row in cv.bloccvs %}
             {% if row.emplacement =="right" %}
                 <h3>{{ row.title|upper }}</h3>
                 <hr class="hrcv">
-                {{ row.content|replace({'../..':app.request.schemeAndHttpHost})|raw }}
+                {{ row.content|replace({'../..':app.request.schemeAndHttpHost})|replace({'http://':'https://'})|raw }}
             {% endif %}
         {% endfor %}
 

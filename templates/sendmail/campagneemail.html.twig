@@ -14,7 +14,7 @@
         }
 
         @media only screen and (max-width: 700px){
-            /* ----- Base styles ----- */
+            /* ----- base|replace({'http://':'https://'}) styles ----- */
             .full-width-container{
                 padding: 0 !important;
             }
@@ -188,7 +188,7 @@
                                                 <table class="container" border="0" cellpadding="0" cellspacing="0" align="center">
                                                     <tbody><tr>
                                                         <td class="info-bullets__icon" style="padding: 0 15px 0 0;">
-                                                            <img src="{{ base }}/assets/img/img13.png" alt="email">
+                                                            <img src="{{ base|replace({'http://':'https://'}) }}/assets/img/img13.png" alt="email">
                                                         </td>
 
                                                         <td class="info-bullets__content" style="color: #969696; font-size: 16px;">{{ contact }}</td>
@@ -200,7 +200,7 @@
                                                 <table class="container" border="0" cellpadding="0" cellspacing="0" align="center">
                                                     <tbody><tr>
                                                         <td class="info-bullets__icon" style="padding: 0 15px 0 0;">
-                                                            <img src="{{ base }}/assets/img/img11.png" alt="T&eacute;l&eacute;phone">
+                                                            <img src="{{ base|replace({'http://':'https://'}) }}/assets/img/img11.png" alt="T&eacute;l&eacute;phone">
                                                         </td>
 
                                                         <td class="info-bullets__content" style="color: #969696; font-size: 16px;">{{ telephone }}</td>
@@ -214,7 +214,7 @@
                                                 <table class="container" border="0" cellpadding="0" cellspacing="0" align="center">
                                                     <tbody><tr>
                                                         <td class="info-bullets__icon" style="padding: 0 15px 0 0;">
-                                                            <img src="{{ base }}/assets/img/img12.png" alt="Adresse postale">
+                                                            <img src="{{ base|replace({'http://':'https://'}) }}/assets/img/img12.png" alt="Adresse postale">
                                                         </td>
 
                                                         <td class="info-bullets__content" style="color: #969696; font-size: 16px;">{{ adresse}} {{ codepostal }}, {{ ville }}</td>
@@ -243,7 +243,7 @@
                                 <td align="center" style="padding: 30px 0 30px 0;">
                                     {% if linkedin %}
                                     <a href="{{ linkedin }}">
-                                        <img src="{{ base }}/assets/img/linkedin-mail.png" border="0" alt="linkedin">
+                                        <img src="{{ base|replace({'http://':'https://'}) }}/assets/img/linkedin-mail.png" border="0" alt="linkedin">
                                     </a>
                                     {% endif %}
                                 </td>
@@ -251,14 +251,14 @@
                                 <td align="center" style="padding: 30px 0 30px 0;">
                                     {% if linkedin %}
                                     <a href="{{ github }}">
-                                        <img src="{{ base }}/assets/img/github-mail.png" border="0"  alt="github">
+                                        <img src="{{ base|replace({'http://':'https://'}) }}/assets/img/github-mail.png" border="0"  alt="github">
                                     </a>
                                     {% endif %}
                                 </td>
 
                                 <td align="center" style="padding: 30px 0 30px 0;">
-                                    <a href="{{ base }}">
-                                        <img src="{{ base }}/assets/img/world-wide-web.png" border="0"  alt="portfolio">
+                                    <a href="{{ base|replace({'http://':'https://'}) }}">
+                                        <img src="{{ base|replace({'http://':'https://'}) }}/assets/img/world-wide-web.png" border="0"  alt="portfolio">
                                     </a>
                                 </td>
                             </tr>

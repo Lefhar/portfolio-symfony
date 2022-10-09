@@ -57,8 +57,11 @@ class CronController extends AbstractController
         );
             file_put_contents(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf', $pdf);
         }
+
        $demarche =  $demarchageRepository->findOneBy(['status'=>0,'unsubscribe'=>0],['id'=>'desc']);
-       $message = $messageRepository->findOneBy([],['id'=>'desc']);
+       if($demarche){
+           $message = $messageRepository->findOneBy([],['id'=>'desc']);
+
         $baseurl = $request->getSchemeAndHttpHost();
         $email = (new TemplatedEmail())
 
@@ -88,6 +91,9 @@ class CronController extends AbstractController
         $demarche->setStatus(1);
         $entityManager->flush();
         return $this->json(['mail'=>'envoyé']);
+       }else{
+           return $this->json(['mail'=>'terminé']);
+       }
     }
 
 }

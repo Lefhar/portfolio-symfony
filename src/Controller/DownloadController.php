@@ -65,7 +65,7 @@ class DownloadController extends AbstractController
             )
         );
 
-       // file_put_contents(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf', $pdf);
+        file_put_contents(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf', $pdf);
 
         return new PdfResponse(
             $knpSnappyPdf->getOutputFromHtml($html, array(
