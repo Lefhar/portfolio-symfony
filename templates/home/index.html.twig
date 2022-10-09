@@ -4,65 +4,63 @@
 
 {% block body %}
 
-<!--debut 1er page-->
+    <!--debut 1er page-->
 
-<div class="headerwebsite" id="portfoliovu">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 haut">
-                <div class="console" id="console">
-                    <div class="title"><img src="{{ asset('assets/img/PuTTY_icon_128px.png') }}" width="18"
-                                            alt="logo putty"> PuTTY
-                        <div class="button">
-                            <span class="fa fa-window-minimize minimize" id="minimize"></span>
-                            <span class="fa fa-window-maximize maximize" id="maximize"></span>
-                            <span class="fa fa-times close-windows" id="closewindows"></span>
+    <div class="headerwebsite" id="portfoliovu">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 haut">
+                    <div class="console" id="console">
+                        <div class="title"><img src="{{ asset('assets/img/PuTTY_icon_128px.png') }}" width="18"
+                                                alt="logo putty"> PuTTY
+                            <div class="button">
+                                <span class="fa fa-window-minimize minimize" id="minimize"></span>
+                                <span class="fa fa-window-maximize maximize" id="maximize"></span>
+                                <span class="fa fa-times close-windows" id="closewindows"></span>
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p>Using username "root".
+                                <br>
+                                Linux proxy 4.19.0-14-amd64 #1 SMP Debian 4.19.171-2 (2021-01-30) x86_64
+                                <br>
+                            <p>The programs included with the Debian GNU/Linux system are free software;
+                                <br>
+                                the exact distribution terms for each program are described in the
+                                individual files in /usr/share/doc/*/copyright.
+                            </p>
+
+                            <p>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+                                permitted by applicable law.</p>
+
+                            root@lefebvreharold:~#
+                            {% if mesproject is not null %}
+                                {% for key,row in mesproject %}
+
+                                    <p><span id="intro{{ key }}"
+                                             class="intro">{% if row.lienGithub %}git clone {{ row.lienGithub }}{% else %}wget {{ row.lienWeb }}{% endif %}</span>
+                                    </p>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
-                    <div class="text">
-                        <p>Using username "root".
-                            <br>
-                            Linux proxy 4.19.0-14-amd64 #1 SMP Debian 4.19.171-2 (2021-01-30) x86_64
-                            <br>
-                        <p>The programs included with the Debian GNU/Linux system are free software;
-                            <br>
-                            the exact distribution terms for each program are described in the
-                            individual files in /usr/share/doc/*/copyright.
-                        </p>
-
-                        <p>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-                            permitted by applicable law.</p>
-
-                        root@lefebvreharold:~#
+                </div>
+                <section class="portfolio" id="portfolio">
+                    <div class="row">
                         {% if mesproject is not null %}
                             {% for key,row in mesproject %}
+                                <div class="col-sm-4 pt-2" id="projet{{ key }}">
+                                    <div class="card">
+                                        <div class="card-body">
 
-                                <p><span id="intro{{ key }}"
-                                         class="intro">{% if row.lienGithub %}git clone {{ row.lienGithub }}{% else %}wget {{ row.lienWeb }}{% endif %}</span>
-                                </p>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            <section class="portfolio" id="portfolio">
-                <div class="row">
-                    {% if mesproject is not null %}
-                        {% for key,row in mesproject %}
-                            <div class="col-sm-4 pt-2" id="projet{{ key }}">
-                                <div class="card">
-                                    <div class="card-body">
-
-                                        <h5 class="card-title"><a
-                                                    href="{% if row.lienWeb %}{{ row.lienWeb }}{% endif %}"
-                                                    target="_blank">{{ row.title }}</a></h5>
-                                        <p class="card-text">
+                                            <h5 class="card-title"><a
+                                                        href="{% if row.lienWeb %}{{ row.lienWeb }}{% endif %}"
+                                                        target="_blank">{{ row.title }}</a></h5>
+                                            <p class="card-text">
 
 
-                                        <div class="overlay-image ">
-                                            <a title="{{ row.title }}"
-                                               href="{{ row.lienWeb?row.lienWeb:row.lienGithub }}" target="_blank"
-                                               rel="noopener">
+                                            <div class="overlay-image ">
+
 
                                                 <img class="w-100" src="assets/file/{{ row.image }}"
                                                      alt="{{ row.title }}" title="{{ row.title }}" width="250"/>
@@ -71,90 +69,90 @@
                                                         {{ row.content|raw }}
                                                     </div>
                                                 </div>
-                                            </a>
+
+                                            </div>
+
+
+                                            <p class="card-text text-center">
+                                                {% if row.lienGithub %}
+                                                    <a href="{{ row.lienGithub }}" target="_blank"><img
+                                                                class="img-fluid"
+                                                                src="{{ asset('assets/img/github-img.png') }}"
+                                                                width="35"
+                                                                alt="{{ row.title }}"></a>
+                                                {% endif %}
+                                                {% if row.lienWeb %}
+                                                    <a href="{{ row.lienWeb }}" target="_blank"><img
+                                                                class="img-fluid"
+                                                                src="{{ asset('assets/img/world-wide-web.png') }}"
+                                                                width="30"
+                                                                alt="{{ row.title }}"></a>
+                                                {% endif %}
+
+
+                                            </p>
                                         </div>
-
-
-                                        <p class="card-text text-center">
-                                            {% if row.lienGithub %}
-                                                <a href="{{ row.lienGithub }}" target="_blank"><img
-                                                            class="img-fluid"
-                                                            src="{{ asset('assets/img/github-img.png') }}"
-                                                            width="35"
-                                                            alt="{{ row.title }}"></a>
-                                            {% endif %}
-                                            {% if row.lienWeb %}
-                                                <a href="{{ row.lienWeb }}" target="_blank"><img
-                                                            class="img-fluid"
-                                                            src="{{ asset('assets/img/world-wide-web.png') }}"
-                                                            width="30"
-                                                            alt="{{ row.title }}"></a>
-                                            {% endif %}
-
-
-                                        </p>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
+                            {% endfor %}
+                        {% endif %}
 
 
-                </div>
-            </section>
+                    </div>
+                </section>
+            </div>
+
         </div>
 
     </div>
+    <!--fin 1erpage-->
+    <div id="main" class="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="row cv">
+                        <div class="col-lg-4 bg-belge padancre">
+                            <div class="about-img">
+                                {% if cv.users.photo is not null %}
+                                    <img class="rounded" src="/assets/file/{{ cv.users.photo }}" alt="" width="150">
+                                {% endif %}
+                            </div>
 
-</div>
-<!--fin 1erpage-->
-<div id="main" class="main">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="container-fluid">
-                <div class="row cv">
-                    <div class="col-lg-4 bg-belge padancre">
-                        <div class="about-img">
-                            {% if cv.users.photo is not null %}
-                                <img class="rounded" src="/assets/file/{{ cv.users.photo }}" alt="" width="150">
-                            {% endif %}
+                            {% for row in cv.bloccvs %}
+                                {% if row.emplacement =="left" and  row.public %}
+                                    <h3>{{ row.title }}</h3>
+                                    <hr class="hrcv">
+                                    {{ row.content|raw }}
+                                {% endif %}
+                            {% endfor %}
+
                         </div>
 
-                        {% for row in cv.bloccvs %}
-                            {% if row.emplacement =="left" and  row.public %}
-                                <h3>{{ row.title }}</h3>
-                                <hr class="hrcv">
-                                {{ row.content|raw }}
-                            {% endif %}
-                        {% endfor %}
-
-                    </div>
-
-                    <div class="col-lg-8 padancre">
-                        <a href="{{ path('app_download_pdf',{id:cv.id}) }}" target="_blank"
-                           class="btn btn-primary downloadcv"><i class="fas fa-file-pdf text-danger bg-light"></i>
-                            Télécharger le CV</a>
-                        <span class="sociaux">
+                        <div class="col-lg-8 padancre">
+                            <a href="{{ path('app_download_pdf',{id:cv.id}) }}" target="_blank"
+                               class="btn btn-primary downloadcv"><i class="fas fa-file-pdf text-danger bg-light"></i>
+                                Télécharger le CV</a>
+                            <span class="sociaux">
 
 <a title="portfolio " href="{{ app.request.schemeAndHttpHost }}" target="_blank" rel="noopener"><img class="rounded"
                                                                                                      src="{{ asset('/assets/file/world-wide-web.png') }}"
                                                                                                      alt="{{ app.request.schemeAndHttpHost }}"
     ></a>{% if cv.users.github %}
                                 <a
-                                        title="github" href="{{ cv.users.github }}" target="_blank"
-                                        rel="noopener"><img class="img-fluid"
-                                                            src="{{ asset('/assets/file/1200px-Octicons-mark-github.svg[1].png') }}"
-                                                            alt="" width="30"> </a>
+                                    title="github" href="{{ cv.users.github }}" target="_blank"
+                                    rel="noopener"><img class="img-fluid"
+                                                        src="{{ asset('/assets/file/1200px-Octicons-mark-github.svg[1].png') }}"
+                                                        alt="" width="30"> </a>
                             {% endif %}
                                 {% if cv.users.linkedin %}<a
                                     title="linkedin" href="{{ cv.users.linkedin }}"
                                     target="_blank" rel="noopener"><img class="img-fluid"
                                                                         src="{{ asset('/assets/file/linkedin1-min.png') }}"
                                                                         alt="{{ cv.users.linkedin }}" width="37"></a>
-                                                                            {% endif %}
+                                {% endif %}
                         </span>
                             {% for row in cv.bloccvs %}
-                                {% if row.emplacement =="right" and  row.public%}
+                                {% if row.emplacement =="right" and  row.public %}
                                     <h3>{{ row.title }}</h3>
                                     <hr class="hrcv">
                                     {{ row.content|raw }}
@@ -180,41 +178,41 @@
             <div class="row">
                 <div class="col-12">
                     <div id="res"></div>
-{#                    <form action="/sendmail" method="POST" id="contactme" name="contactme">#}
-{#                        <div class="form-group">#}
-{#                            <label for="email">Votre Email</label>#}
-{#                            <input type="email" class="form-control" id="email" name="email"#}
-{#                                   placeholder=" Votre adresse email" required>#}
-{#                            <small id="emailHelp" class="form-text text-muted"></small>#}
-{#                        </div>#}
-{#                        <div class="form-group">#}
-{#                            <label for="sujet">Objet du message</label>#}
-{#                            <select id="sujet" name="sujet" class="form-control" required>#}
-{#                                <option value="">Séléctionnez le sujet</option>#}
-{#                                <option value="cv">Demande de CV</option>#}
-{#                                <option value="offre">Offre d'emploi</option>#}
-{#                                <option value="autreoffre">Autres offres</option>#}
-{#                                <option value="remarque">Remarque</option>#}
-{#                            </select>#}
-{#                        </div>#}
-{#                        <div class="form-group" id="boxmessage">#}
-{#                            <label for="message">Votre message</label>#}
-{#                            <textarea type="textarea" id="message" name="message" class="form-control"#}
-{#                                      rows="10"></textarea>#}
-{#                        </div>#}
+                    {#                    <form action="/sendmail" method="POST" id="contactme" name="contactme"> #}
+                    {#                        <div class="form-group"> #}
+                    {#                            <label for="email">Votre Email</label> #}
+                    {#                            <input type="email" class="form-control" id="email" name="email" #}
+                    {#                                   placeholder=" Votre adresse email" required> #}
+                    {#                            <small id="emailHelp" class="form-text text-muted"></small> #}
+                    {#                        </div> #}
+                    {#                        <div class="form-group"> #}
+                    {#                            <label for="sujet">Objet du message</label> #}
+                    {#                            <select id="sujet" name="sujet" class="form-control" required> #}
+                    {#                                <option value="">Séléctionnez le sujet</option> #}
+                    {#                                <option value="cv">Demande de CV</option> #}
+                    {#                                <option value="offre">Offre d'emploi</option> #}
+                    {#                                <option value="autreoffre">Autres offres</option> #}
+                    {#                                <option value="remarque">Remarque</option> #}
+                    {#                            </select> #}
+                    {#                        </div> #}
+                    {#                        <div class="form-group" id="boxmessage"> #}
+                    {#                            <label for="message">Votre message</label> #}
+                    {#                            <textarea type="textarea" id="message" name="message" class="form-control" #}
+                    {#                                      rows="10"></textarea> #}
+                    {#                        </div> #}
 
 
-{#                        <button type="submit" class="btn btn-info">Envoyer</button>#}
-{#                    </form>#}
+                    {#                        <button type="submit" class="btn btn-info">Envoyer</button> #}
+                    {#                    </form> #}
                     {{ form_start(form, {'attr': {'id': 'contactme','action':'/sendmail'}}) }}
                     {{ form_row(form.email) }}
                     {{ form_row(form.sujet) }}
                     <div class="form-group" id="boxmessage">
                         {{ form_row(form.message) }}
                     </div>
-                    <div class="form-group pt-2" >
-                    {{ form_row(form.recaptcha) }}
-                    {{ form_errors(form.recaptcha) }}
+                    <div class="form-group pt-2">
+                        {{ form_row(form.recaptcha) }}
+                        {{ form_errors(form.recaptcha) }}
                     </div>
                     {# That will display the error of the captcha to user #}
                     <button type="submit" class="btn btn-info" id="submit">Envoyer</button>

@@ -15,8 +15,8 @@
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:type" content="profile" />
         <meta property="og:title" content="Concepteur Développeur d'Application" />
-        <meta property="og:url" content="" />
-        <meta property="og:description" content="" />
+        <meta property="og:url" content="{{ app.request.schemeAndHttpHost }}" />
+        <meta property="og:description" content="{% for row in cv.bloccvs %}{% if row.title =="INTRODUCTION" %}{{ row.content|striptags  }}{% endif %}{% endfor %}" />
         <meta property="og:image" content="/assets/img/ms-icon-310x310.png" />
         <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/img/apple-icon-57x57.png') }}" >
         <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/img/apple-icon-60x60.png') }}" >
@@ -34,7 +34,7 @@
         <link rel="manifest" href="{{ asset('manifest.json')}}"/>
         <link rel="preload" as="font" href="{{ asset('assets/css/Milkshake.woff')}}" crossorigin>
         <link rel="preload" as="font" href="{{ asset('assets/css/Milkshake.woff2')}}" crossorigin>
-        <link rel="preload" as="image" href="{{ asset('assets/img/1947484-min.webp')}}">
+        <link rel="preload" as="image" href="{{ asset('assets/img/1947484-min.webp')}}" crossorigin>
         <link rel="stylesheet" href="{{ asset('assets/css/background.css')}}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
         <meta name="msapplication-TileColor" content="#ffffff"/>

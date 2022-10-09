@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\ContactType;
 use App\Repository\CvRepository;
+use Knp\Snappy\Pdf;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,9 +19,44 @@ class SendmailController extends AbstractController
      * @Route("/sendmail", name="app_sendmail")
      * @throws TransportExceptionInterface
      */
-    public function index(Request $request, MailerInterface $mailer, CvRepository $cvRepository): Response
+    public function index(Request $request, MailerInterface $mailer, CvRepository $cvRepository,Pdf $knpSnappyPdf): Response
     {
+        $cv = $cvRepository->findOneBy(['IsActive'=>1]);
+        if(!file_exists(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf'))
+        {
+            $html = $this->renderView('download/index.html.twig', array(
+                'cv' => $cv
+            ));
+            $knpSnappyPdf->setTimeout(120);
+            $knpSnappyPdf->setOption("enable-local-file-access",true); // added this
+            $pdf = $knpSnappyPdf->getOutputFromHtml($html, array(
 
+                    'orientation' => 'portrait',
+
+                    'page-height' => 297,
+
+                    'page-width'  => 210,
+
+                    'encoding' => 'utf-8',
+
+                    'images' => true,
+
+                    'dpi' => 72,
+
+                    'enable-external-links' => true,
+
+                    'enable-internal-links' => true,
+                    'margin-top'=>0,
+                    'margin-bottom'=>0,
+                    'margin-left'=>0,
+                    'margin-right'=>0,
+                    'no-background'=>false,
+                    'background'=>true
+
+                )
+            );
+            file_put_contents(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf', $pdf);
+        }
         $baseurl = $request->getSchemeAndHttpHost();
         $cv = $cvRepository->findOneBy(['IsActive' => 1]);
         $form = $this->createForm(ContactType::class);

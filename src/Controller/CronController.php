@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Repository\CvRepository;
 use App\Repository\DemarchageRepository;
 use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Snappy\Pdf;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,8 +19,44 @@ class CronController extends AbstractController
      * @Route("/cron",name="app_cron",methods={"GET"})
      */
     public function sendmail(DemarchageRepository $demarchageRepository, MessageRepository $messageRepository,Request $request,
-                             MailerInterface $mailer,EntityManagerInterface $entityManager)
+                             MailerInterface $mailer,EntityManagerInterface $entityManager,Pdf $knpSnappyPdf,CvRepository $cvRepository)
     {
+        $cv = $cvRepository->findOneBy(['IsActive'=>1]);
+        if(!file_exists(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf'))
+        {
+        $html = $this->renderView('download/index.html.twig', array(
+            'cv' => $cv
+        ));
+        $knpSnappyPdf->setTimeout(120);
+        $knpSnappyPdf->setOption("enable-local-file-access",true); // added this
+        $pdf = $knpSnappyPdf->getOutputFromHtml($html, array(
+
+                'orientation' => 'portrait',
+
+                'page-height' => 297,
+
+                'page-width'  => 210,
+
+                'encoding' => 'utf-8',
+
+                'images' => true,
+
+                'dpi' => 72,
+
+                'enable-external-links' => true,
+
+                'enable-internal-links' => true,
+                'margin-top'=>0,
+                'margin-bottom'=>0,
+                'margin-left'=>0,
+                'margin-right'=>0,
+                'no-background'=>false,
+                'background'=>true
+
+            )
+        );
+            file_put_contents(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf', $pdf);
+        }
        $demarche =  $demarchageRepository->findOneBy(['status'=>0,'unsubscribe'=>0],['id'=>'desc']);
        $message = $messageRepository->findOneBy([],['id'=>'desc']);
         $baseurl = $request->getSchemeAndHttpHost();
@@ -26,6 +64,7 @@ class CronController extends AbstractController
 
             ->from('contact@lefebvreharold.fr')
             ->to($demarche->getEmail())
+            ->attachFromPath(getcwd() . '/assets/file/' . $cv->getTitleFile() . '.pdf', $cv->getTitleFile() . '.pdf')
             ->subject($message->getTitle())
             ->context([
                 'mail'=>$message->getUsers()->getEmail(),
