@@ -65,7 +65,7 @@ class SendmailController extends AbstractController
         $success = "";
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if ($form->get('sujet')->getData() == "cv") {
+            if($form->get('sujet')->getData() == "cv") {
                 $email = (new TemplatedEmail())
                     ->attachFromPath(getcwd() . '/assets/file/' . $cv->getTitleFile() . '.pdf', $cv->getTitleFile() . '.pdf')
                     ->from('contact@lefebvreharold.fr')
@@ -91,6 +91,10 @@ class SendmailController extends AbstractController
                 $mailer->send($email);
 
             } else {
+                if(empty($form->get('message')) or $form->get('message')=="" or $form->get('sujet')=="" or empty($form->get('sujet')) or empty($form->get('email')) )
+                {
+                    return $this->json(["success" => "", "error" => "Veuillez remplir tous les champs"]);
+                }
                 $email = (new TemplatedEmail())
                     ->to('contact@lefebvreharold.fr')
                     ->from($form->get('email')->getData())

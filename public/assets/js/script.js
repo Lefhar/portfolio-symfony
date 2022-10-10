@@ -38,9 +38,9 @@ if (document.getElementsByClassName('intro')) {
             });
             delay_start += delay * letters.length;
             let id = elem.id
-          //  console.log('projet' + parseInt(id.match(/(\d+)/)));
+            //  console.log('projet' + parseInt(id.match(/(\d+)/)));
             //    fondu('projet'+parseInt(id.match(/(\d+)/)))
-         //   console.log(delay_start);
+            //   console.log(delay_start);
             setTimeout(function () {
                 fondu('projet' + parseInt(elem.id.match(/(\d+)/)))
             }, delay_start);
@@ -109,6 +109,20 @@ $("#contactme").submit(function (e) {
     const form_method = "POST"; //récupérer la méthode GET/POST du formulaire
     const form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
     $('#submit').prop('disabled', true);
+
+    let option = $("#contact_sujet").children("option:selected").val();
+    if (option === "cv") {
+
+    } else {
+        if (!$('#contact_message').val()) {
+
+            $("#res").html(`<div class="alert alert-warning" role="alert">
+            Merci de bien remplir tous les champs
+            </div>`);
+            $('#submit').prop('disabled', false);
+            return false;
+        }
+    }
     //console.log(form_data);
     $.ajax({
         url: form_url,
@@ -118,15 +132,15 @@ $("#contactme").submit(function (e) {
         //console.log(response);
         // let dataJson = $.parseJSON(response);
         // console.log(dataJson);
-        if (response.error !=="") {
+        if (response.error !== "") {
             $("#res").html(`<div class="alert alert-danger" role="alert">
   ${response.error}
 </div>`);
             $('#submit').prop('disabled', false);
         } else {
             $("#res").html(`<div class="alert alert-success" role="alert">
-  ${response.success}
-</div>`);
+            ${response.success}
+            </div>`);
             $("#contactme").css("display", "none");
             setTimeout(function () {
                 $("#res").html("");
@@ -139,17 +153,24 @@ $("#contactme").submit(function (e) {
         }
         //  $("#res").html();
 
+    }).fail(function () {
+        $('#submit').prop('disabled', false);
+        $("#res").html(`<div class="alert alert-success" role="alert">
+            Merci de bien remplir tous les champs
+            </div>`);
     });
 });
+$('#contact_message').attr('required', true);
 $(document).ready(function () {
     $("#contact_sujet").change(function () {
         let option = $(this).children("option:selected").val();
 
         if (option === "cv") {
-
             document.getElementById("boxmessage").style.display = "none";
+            $('#contact_message').attr('required', false);
         } else {
             document.getElementById("boxmessage").style.display = "block";
+            $('#contact_message').attr('required', true);
         }
 
 
