@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Cv index</h1>
-
+<div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -33,6 +33,6 @@
         {% endfor %}
         </tbody>
     </table>
-
+</div>
     <a href="{{ path('app_cv_new') }}">Create new</a>
 {% endblock %}

@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Mesprojets index</h1>
-
+<div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -33,6 +33,6 @@
         {% endfor %}
         </tbody>
     </table>
-
+</div>
     <a href="{{ path('app_mesprojets_new') }}">Create new</a>
 {% endblock %}

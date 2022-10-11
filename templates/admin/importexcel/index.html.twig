@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Contact index</h1>
-
+<div class="table-responsive">
     <table class="table table-striped" id="excel">
         <thead>
             <tr>
@@ -43,6 +43,6 @@
         {% endfor %}
         </tbody>
     </table>
-
+</div>
     <a href="{{ path('app_importexcel') }}">Importer un nouveau fichier</a>
 {% endblock %}
