@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Snappy\Pdf;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +20,7 @@ class CronController extends AbstractController
      * @Route("/cron",name="app_cron",methods={"GET"})
      */
     public function sendmail(DemarchageRepository $demarchageRepository, MessageRepository $messageRepository,Request $request,
-                             MailerInterface $mailer,EntityManagerInterface $entityManager,Pdf $knpSnappyPdf,CvRepository $cvRepository)
+                             MailerInterface $mailer,EntityManagerInterface $entityManager,Pdf $knpSnappyPdf,CvRepository $cvRepository): JsonResponse
     {
         $cv = $cvRepository->findOneBy(['IsActive'=>1]);
         if(!file_exists(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf'))
