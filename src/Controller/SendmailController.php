@@ -88,8 +88,6 @@ class SendmailController extends AbstractController
                     ])
                     ->htmlTemplate('sendmail/cvemail.html.twig');
 
-                $mailer->send($email);
-
             } else {
                 if(empty($form->get('message')) or $form->get('message')=="" or $form->get('sujet')=="" or empty($form->get('sujet')) or empty($form->get('email')) )
                 {
@@ -108,11 +106,11 @@ class SendmailController extends AbstractController
                         'base' => $baseurl
                     ])
                     ->htmlTemplate('sendmail/email.html.twig');
-                $mailer->send($email);
             }
+            $mailer->send($email);
             $success = "Votre message a bien été envoyé";
         } else {
-            foreach ($form->getErrors(true, true) as $formError) {
+            foreach ($form->getErrors(true) as $formError) {
                 $errors = $formError->getMessage();
             }
 

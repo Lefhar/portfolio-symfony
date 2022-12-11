@@ -32,14 +32,13 @@ class ImportexcelController extends AbstractController
 
             if (!empty($form->get('excel')->getData() && $form->get('excel')->getData() != null)) {
                 $fichier = $form->get('excel')->getData();
-                dump($fichier->getClientmimeType());
+                //dump($fichier->getClientmimeType());
                 $aMimeTypes = array("application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
                 if (in_array($fichier->getClientmimeType(), $aMimeTypes)) {
                     if ($fichier->move('assets/file/excel/', $fichier->getClientOriginalName())) {
-//                    $mesprojet->setImage($fichier->getClientOriginalName());
                         $xlsx = SimpleXLSX::parse(getcwd() . '/assets/file/excel/' . $fichier->getClientOriginalName())->rows();
                         $fichier = $fichier->getClientOriginalName();
-                       // dump($xlsx);
+                        // dump($xlsx);
                     }
                 }
 
@@ -55,8 +54,7 @@ class ImportexcelController extends AbstractController
         foreach ($colonne as $row) {
             $table[] = $row["Field"];
         }
-        //asort($table);
-        //  $xlsx = SimpleXLSX::parse(getcwd() . '/assets/file/excel/'. $fichier->getClientOriginalName());
+
         return $this->render('admin/importexcel/form.html.twig', [
 
             'excel' => $xlsx,
@@ -88,8 +86,8 @@ class ImportexcelController extends AbstractController
                         $demarchage->setCodepostal($colonne[$request->get('de')[1]]);
                     }
                     if (!empty($colonne[$request->get('de')[2]])) {
-                    $demarchage->setEmail($colonne[$request->get('de')[2]]);
-                }
+                        $demarchage->setEmail($colonne[$request->get('de')[2]]);
+                    }
                     if (!empty($colonne[$request->get('de')[3]])) {
                         $demarchage->setMobile($colonne[$request->get('de')[3]]);
                     }
@@ -113,7 +111,7 @@ class ImportexcelController extends AbstractController
             unlink(getcwd() . '/assets/file/excel/' . $request->get('fichier'));
             return $this->redirectToRoute('app_importexcel');
         }
-
+        return false;
     }
 
 }
