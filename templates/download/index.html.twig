@@ -58,7 +58,7 @@
 					<a title="linkedin" href="{{ cv.users.linkedin }}" target="_blank" rel="noopener"><img class="img-fluid" src="{{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}/assets/file/linkedin1-min.png" alt="" width="37"></a>
 				</span>
         <div style="top: 158px;right: 0px;position: absolute;">
-            <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}&choe=UTF-8" width="150" height="150">
+            <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}&choe=UTF-8" width="150" height="150" alt="qr code">
         </div>
         {% for row in cv.bloccvs %}
             {% if row.emplacement =="right" %}
