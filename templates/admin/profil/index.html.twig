@@ -1,6 +1,6 @@
 {% extends 'baseadmin.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Liste utilisateur{% endblock %}
 
 {% block body %}
     <h1>Liste utilisateur</h1>
@@ -12,7 +12,7 @@
                 <th>Email</th>
                 <th>Roles</th>
                 <th>Vérifié</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,11 +29,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Rien trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-    <a href="{{ path('app_profil_new') }}">Create new</a>
+    <a href="{{ path('app_profil_new') }}">Ajouter un nouvelle utilisateur</a>
 {% endblock %}
