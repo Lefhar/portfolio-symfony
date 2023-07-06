@@ -9,7 +9,7 @@
             {{ encore_entry_link_tags('app') }}
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         {% endblock %}
-        <meta name="description" content="{% for row in cv.bloccvs %}{% if row.title =="INTRODUCTION" %}{{ row.content|striptags  }}{% endif %}{% endfor %}" />
+        <meta name="description" content="{% for row in cv.bloccvs %}{% if row.title =="INTRODUCTION" %}{{ (row.content|striptags)|u.truncate(280) }}{% endif %}{% endfor %}" />
         <meta property="fb:app_id" content="966242223397117" />
         <meta property="og:site_name" content="Lefebvre Harold" />
         <meta property="og:locale" content="fr_FR" />
