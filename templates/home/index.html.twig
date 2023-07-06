@@ -120,7 +120,7 @@
 
                             {% for row in cv.bloccvs %}
                                 {% if row.emplacement =="left" and  row.public %}
-                                    <h3>{{ row.title }}</h3>
+                                    <h2>{{ row.title }}</h2>
                                     <hr class="hrcv">
                                     {{ row.content|raw }}
                                 {% endif %}
@@ -154,7 +154,7 @@
                         </span>
                             {% for row in cv.bloccvs %}
                                 {% if row.emplacement =="right" and  row.public %}
-                                    <h3>{{ row.title }}</h3>
+                                    <h2>{{ row.title }}</h2>
                                     <hr class="hrcv">
                                     {{ row.content|raw }}
                                 {% endif %}
