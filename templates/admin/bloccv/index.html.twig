@@ -9,12 +9,12 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
+                <th>Titre</th>
                 <th>Date</th>
                 <th>Emplacement</th>
                 <th>Position</th>
                 <th>Public</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,19 +25,19 @@
                 <td>{{ bloccv.date ? bloccv.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ bloccv.emplacement }}</td>
                 <td>{{ bloccv.position }}</td>
-                <td>{{ bloccv.public ? 'Yes' : 'No' }}</td>
+                <td>{{ bloccv.public ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('app_bloccv_show', {'id': bloccv.id}) }}">show</a>
-                    <a href="{{ path('app_bloccv_edit', {'id': bloccv.id}) }}">edit</a>
+                    <a href="{{ path('app_bloccv_show', {'id': bloccv.id}) }}">Voir</a>
+                    <a href="{{ path('app_bloccv_edit', {'id': bloccv.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Rien trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-    <a href="{{ path('app_bloccv_new') }}">Create new</a>
+    <a href="{{ path('app_bloccv_new') }}">Ajouter un nouveau bloc cv</a>
 {% endblock %}

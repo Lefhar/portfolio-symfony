@@ -3,20 +3,20 @@
 {% block title %}Demarchage index{% endblock %}
 
 {% block body %}
-    <h1>Demarchage index</h1>
+    <h1>Demarchage</h1>
 <div class="table-responsive">
     <table class="table table-striped" id="excel">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Email</th>
                 <th>Status</th>
                 <th>Date</th>
                 <th>Adresse</th>
-                <th>Codepostal</th>
+                <th>Code postal</th>
                 <th>Ville</th>
-                <th>Telephone</th>
+                <th>Téléphone</th>
                 <th>Mobile</th>
                 <th>actions</th>
             </tr>
@@ -35,17 +35,17 @@
                 <td>{{ demarchage.telephone }}</td>
                 <td>{{ demarchage.mobile }}</td>
                 <td>
-                    <a href="{{ path('app_demarchage_show', {'id': demarchage.id}) }}">show</a>
-                    <a href="{{ path('app_demarchage_edit', {'id': demarchage.id}) }}">edit</a>
+                    <a href="{{ path('app_demarchage_show', {'id': demarchage.id}) }}">Voir</a>
+                    <a href="{{ path('app_demarchage_edit', {'id': demarchage.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="11">Rien trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-    <a href="{{ path('app_demarchage_new') }}">Create new</a>
+    <a href="{{ path('app_demarchage_new') }}">Créer une fiche</a>
 {% endblock %}

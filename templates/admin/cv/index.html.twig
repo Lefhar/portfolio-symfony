@@ -1,17 +1,17 @@
 {% extends 'baseadmin.html.twig' %}
 
-{% block title %}Cv index{% endblock %}
+{% block title %}Cv{% endblock %}
 
 {% block body %}
-    <h1>Cv index</h1>
+    <h1>Cv</h1>
 <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>IsActive</th>
-                <th>actions</th>
+                <th>Titre</th>
+                <th>Est active</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -28,11 +28,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Rien trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-    <a href="{{ path('app_cv_new') }}">Create new</a>
+    <a href="{{ path('app_cv_new') }}">Créer un cv</a>
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block title %}Mesprojets index{% endblock %}
 
 {% block body %}
-    <h1>Mesprojets index</h1>
+    <h1>Mes projets </h1>
 <div class="table-responsive">
     <table class="table">
         <thead>
@@ -22,17 +22,17 @@
                 <td>{{ mesprojet.date ? mesprojet.date|date('Y-m-d H:i:s') : '' }}</td>
 
                 <td>
-                    <a href="{{ path('app_mesprojets_show', {'id': mesprojet.id}) }}">show</a>
-                    <a href="{{ path('app_mesprojets_edit', {'id': mesprojet.id}) }}">edit</a>
+                    <a href="{{ path('app_mesprojets_show', {'id': mesprojet.id}) }}">Voir</a>
+                    <a href="{{ path('app_mesprojets_edit', {'id': mesprojet.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Rien trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-    <a href="{{ path('app_mesprojets_new') }}">Create new</a>
+    <a href="{{ path('app_mesprojets_new') }}">Ajouter un nouveau projet</a>
 {% endblock %}

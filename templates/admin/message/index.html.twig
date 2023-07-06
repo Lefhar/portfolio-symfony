@@ -9,7 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
+                <th>Titre</th>
                 <th>Date</th>
                 <th>actions</th>
             </tr>
@@ -27,11 +27,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Rien trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-    <a href="{{ path('app_message_new') }}">Create new</a>
+    <a href="{{ path('app_message_new') }}">Ajouter un Message</a>
 {% endblock %}
