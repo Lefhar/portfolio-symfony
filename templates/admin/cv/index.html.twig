@@ -20,10 +20,10 @@
             <tr>
                 <td>{{ cv.id }}</td>
                 <td>{{ cv.title }}</td>
-                <td>{{ cv.IsActive ? 'Yes' : 'No' }}</td>
+                <td>{{ cv.IsActive ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('app_cv_show', {'id': cv.id}) }}">show</a>
-                    <a href="{{ path('app_cv_edit', {'id': cv.id}) }}">edit</a>
+                    <a href="{{ path('app_cv_show', {'id': cv.id}) }}">Voir</a>
+                    <a href="{{ path('app_cv_edit', {'id': cv.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
