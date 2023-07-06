@@ -1,9 +1,9 @@
 {% extends 'baseadmin.html.twig' %}
 
-{% block title %}Mesprojets{% endblock %}
+{% block title %}Mes projets{% endblock %}
 
 {% block body %}
-    <h1>Mesprojets</h1>
+    <h1>Mes projets</h1>
 
     <table class="table">
         <tbody>
@@ -12,11 +12,11 @@
                 <td>{{ mesprojet.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ mesprojet.title }}</td>
             </tr>
             <tr>
-                <th>Content</th>
+                <th>Contenu</th>
                 <td>{{ mesprojet.content }}</td>
             </tr>
             <tr>
@@ -24,17 +24,17 @@
                 <td>{{ mesprojet.date ? mesprojet.date|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Lien_github</th>
+                <th>Lien github</th>
                 <td>{{ mesprojet.lienGithub }}</td>
             </tr>
             <tr>
-                <th>Lien_web</th>
+                <th>Lien web</th>
                 <td>{{ mesprojet.lienWeb }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_mesprojets_index') }}">back to list</a>
+    <a href="{{ path('app_mesprojets_index') }}">Retour</a>
 
     <a href="{{ path('app_mesprojets_edit', {'id': mesprojet.id}) }}">Editer</a>
 
