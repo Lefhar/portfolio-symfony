@@ -43,6 +43,13 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
             <script src="https://kit.fontawesome.com/5d4e6def63.js" crossorigin="anonymous"></script>
+            <script>
+                const link = document.createElement("link");
+                link.rel = "preload";
+                link.as = "image";
+                link.href ="{{ asset('assets/img/1947484-min.webp')}}";
+                document.head.appendChild(link)
+            </script>
         {% endblock %}
     </head>
     <body>
@@ -57,7 +64,6 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
-
                         <li class="nav-item">
                             <a class="nav-link"   href="#portfoliovu">Portfolio</a>
                         </li>
