@@ -17,29 +17,29 @@
         <meta property="og:title" content="Concepteur Développeur d'Application" />
         <meta property="og:url" content="{{ app.request.schemeAndHttpHost|replace({'http://':'https://'}) }}" />
         <meta property="og:description" content="{% for row in cv.bloccvs %}{% if row.title =="INTRODUCTION" %}{{ row.content|striptags  }}{% endif %}{% endfor %}" />
-        <meta property="og:image" content="{{ asset('assets/img/ms-icon-310x310.png')}}" />
-        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/img/apple-icon-57x57.png') }}" >
-        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/img/apple-icon-60x60.png') }}" >
-        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/img/apple-icon-72x72.png') }}" >
-        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon-76x76.png')}}"/>
-        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/img/apple-icon-114x114.png')}}"/>
-        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/img/apple-icon-120x120.png')}}"/>
-        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/img/apple-icon-144x144.png')}}"/>
-        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/img/apple-icon-152x152.png')}}"/>
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/apple-icon-180x180.png')}}"/>
-        <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('assets/img/android-icon-192x192.png')}}"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon-32x32.png')}}"/>
-        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/img/favicon-96x96.png')}}"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-16x16.png')}}"/>
-        <link rel="manifest" href="{{ asset('manifest.json')}}"/>
-        <link rel="preload" as="font" href="{{ asset('assets/css/Milkshake.woff')}}" crossorigin>
-        <link rel="preload" as="font" href="{{ asset('assets/css/Milkshake.woff2')}}" crossorigin>
+        <meta property="og:image" content="{{asset('assets/img/ms-icon-310x310.png')}}" />
+        <link rel="apple-touch-icon" sizes="57x57" href="{{asset('assets/img/apple-icon-57x57.png') }}"  data-pagespeed-no-transform>
+        <link rel="apple-touch-icon" sizes="60x60" href="{{asset('assets/img/apple-icon-60x60.png') }}"  data-pagespeed-no-transform>
+        <link rel="apple-touch-icon" sizes="72x72" href="{{asset('assets/img/apple-icon-72x72.png') }}"  data-pagespeed-no-transform>
+        <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/apple-icon-76x76.png')}}"  data-pagespeed-no-transform>
+        <link rel="apple-touch-icon" sizes="114x114" href="{{asset('assets/img/apple-icon-114x114.png')}}" data-pagespeed-no-transform>
+        <link rel="apple-touch-icon" sizes="120x120" href="{{asset('assets/img/apple-icon-120x120.png')}}" data-pagespeed-no-transform>
+        <link rel="apple-touch-icon" sizes="144x144" href="{{asset('assets/img/apple-icon-144x144.png')}}" data-pagespeed-no-transform>
+        <link rel="apple-touch-icon" sizes="152x152" href="{{asset('assets/img/apple-icon-152x152.png')}}" data-pagespeed-no-transform>
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/img/apple-icon-180x180.png')}}" data-pagespeed-no-transform>
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{asset('assets/img/android-icon-192x192.png')}}" data-pagespeed-no-transform>
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/img/favicon-32x32.png')}}" data-pagespeed-no-transform>
+        <link rel="icon" type="image/png" sizes="96x96" href="{{asset('assets/img/favicon-96x96.png')}}" data-pagespeed-no-transform>
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/img/favicon-16x16.png')}}" data-pagespeed-no-transform>
+        <link rel="manifest" href="{{asset('manifest.json')}}"/>
+        <link rel="preload" as="font" href="{{asset('assets/css/Milkshake.woff')}}" crossorigin>
+        <link rel="preload" as="font" href="{{asset('assets/css/Milkshake.woff2')}}" crossorigin>
         <link rel="preload" as="image" href="https://{{ app.request.getHost() }}/assets/img/1947484-min-min.webp"  data-pagespeed-no-transform>
-        <link rel="preload" as="image" href="{{ asset('assets/img/1947484-min.webp')}}" crossorigin data-pagespeed-no-transform>
-        <link rel="stylesheet" href="{{ asset('assets/css/background.css')}}?id=1">
-        <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+        <link rel="preload" as="image" href="{{asset('assets/img/1947484-min.webp')}}" crossorigin data-pagespeed-no-transform>
+        <link rel="stylesheet" href="{{asset('assets/css/background.css')}}?id=2"  data-pagespeed-no-transform>
+        <link rel="stylesheet" href="{{asset('assets/css/style.css')}}"  data-pagespeed-no-transform>
         <meta name="msapplication-TileColor" content="#ffffff"/>
-        <meta name="msapplication-TileImage" content="{{ asset('assets/img/ms-icon-144x144.png')}}"/>
+        <meta name="msapplication-TileImage" content="{{asset('assets/img/ms-icon-144x144.png')}}"  data-pagespeed-no-transform>
         <meta name="theme-color" content="#ffffff"/>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
