@@ -8815,16 +8815,16 @@
         },
         {
             "name": "symfony/twig-bridge",
-            "version": "v5.4.12",
+            "version": "v5.4.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bridge.git",
-                "reference": "94c3b38514c953e3e84719c96d4e578a01ca1819"
+                "reference": "0526188cb886be64351454826fecc6d35356eaf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/94c3b38514c953e3e84719c96d4e578a01ca1819",
-                "reference": "94c3b38514c953e3e84719c96d4e578a01ca1819",
+                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/0526188cb886be64351454826fecc6d35356eaf1",
+                "reference": "0526188cb886be64351454826fecc6d35356eaf1",
                 "shasum": ""
             },
             "require": {
@@ -8844,8 +8844,8 @@
                 "symfony/workflow": "<5.2"
             },
             "require-dev": {
-                "doctrine/annotations": "^1.12",
-                "egulias/email-validator": "^2.1.10|^3",
+                "doctrine/annotations": "^1.12|^2",
+                "egulias/email-validator": "^2.1.10|^3|^4",
                 "phpdocumentor/reflection-docblock": "^3.0|^4.0|^5.0",
                 "symfony/asset": "^4.4|^5.0|^6.0",
                 "symfony/console": "^5.3|^6.0",
@@ -8916,7 +8916,7 @@
             "description": "Provides integration for Twig with various Symfony components",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/twig-bridge/tree/v5.4.12"
+                "source": "https://github.com/symfony/twig-bridge/tree/v5.4.19"
             },
             "funding": [
                 {
@@ -8932,7 +8932,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-03T13:09:21+00:00"
+            "time": "2023-01-09T05:43:46+00:00"
         },
         {
             "name": "symfony/twig-bundle",
