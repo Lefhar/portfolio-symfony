@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Text_LanguageDetect;
 
 class SendmailController extends AbstractController
 {
@@ -92,6 +93,14 @@ class SendmailController extends AbstractController
                 if(empty($form->get('message')) or $form->get('message')=="" or $form->get('sujet')=="" or empty($form->get('sujet')) or empty($form->get('email')) )
                 {
                     return $this->json(["success" => "", "error" => "Veuillez remplir tous les champs"]);
+                }
+
+                $ld = new Text_LanguageDetect();
+                $detectedLang = $ld->detectSimple($form->get('message')->getData());
+                $blockedLanguages = ['ru', 'uk']; // Bloque le russe et l’ukrainien
+                if (in_array($detectedLang, $blockedLanguages, true)) {
+                    // 🚫 Simuler un envoi réussi mais ne pas réellement envoyer
+                    return $this->json(["success" => "Votre message a bien été envoyé", "error" => ""]);
                 }
                 $email = (new TemplatedEmail())
                     ->to('contact@lefebvreharold.fr')
