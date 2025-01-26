@@ -101,7 +101,7 @@ class SendmailController extends AbstractController
                 foreach ($detectedLang as $lang => $score) {
                     if (in_array($lang, $blockedLanguages, true)) {
                         // Si la langue est bloquée, on renvoie une réponse
-                        return $this->json(["success" => "Votre message a bien été envoyé !", "error" => "Message en langue bloquée détecté."]);
+                        return $this->json(["success" => "Votre message a bien été envoyé !", "error" => ""]);
                     }
                 }
                 $email = (new TemplatedEmail())
