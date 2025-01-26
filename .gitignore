@@ -20,3 +20,4 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 /public/assets/file/
+stats/
