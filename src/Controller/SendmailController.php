@@ -100,7 +100,7 @@ class SendmailController extends AbstractController
                 $blockedLanguages = ['ru', 'uk']; // Bloque le russe et l’ukrainien
                 if (in_array($detectedLang, $blockedLanguages, true)) {
                     // 🚫 Simuler un envoi réussi mais ne pas réellement envoyer
-                    return $this->json(["success" => "Votre message a bien été envoyé", "error" => ""]);
+                    return $this->json(["success" => "Votre message a bien été envoyé 103", "error" => ""]);
                 }
                 $email = (new TemplatedEmail())
                     ->to('contact@lefebvreharold.fr')
