@@ -97,7 +97,7 @@ class SendmailController extends AbstractController
 
                 $ld = new Text_LanguageDetect();
                 $detectedLang = $ld->detect($form->get('message')->getData(), 2); // Augmenter le nombre de langues détectées à 2
-                dump($detectedLang); // Affiche le résultat pour vérifier la langue détectée
+                var_dump($detectedLang); // Affiche le résultat pour vérifier la langue détectée
                 $blockedLanguages = ['ru', 'uk']; // Bloque le russe et l’ukrainien
                 if (in_array($detectedLang, $blockedLanguages, true)) {
                     // 🚫 Simuler un envoi réussi mais ne pas réellement envoyer
@@ -118,7 +118,7 @@ class SendmailController extends AbstractController
                     ->htmlTemplate('sendmail/email.html.twig');
             }
             $mailer->send($email);
-            $success = "Votre message a bien été envoyé".dump($detectedLang);
+            $success = "Votre message a bien été envoyé";
         } else {
             foreach ($form->getErrors(true) as $formError) {
                 $errors = $formError->getMessage();
