@@ -99,10 +99,11 @@ class SendmailController extends AbstractController
                 $detectedLang = $ld->detect($form->get('message')->getData(), 2); // Augmenter le nombre de langues détectées à 2
                 var_dump($detectedLang); // Affiche le résultat pour vérifier la langue détectée
                 $blockedLanguages = ['russian', 'ukrainian']; // Bloque le russe et l’ukrainien
-                if (in_array($detectedLang, $blockedLanguages, true)) {
-                    var_dump($blockedLanguages);
-                    // 🚫 Simuler un envoi réussi mais ne pas réellement envoyer
-                    return $this->json(["success" => "Votre message a bien été envoyé 103", "error" => ""]);
+                foreach ($detectedLang as $lang => $score) {
+                    if (in_array($lang, $blockedLanguages, true)) {
+                        // Si la langue est bloquée, on renvoie une réponse
+                        return $this->json(["success" => "Votre message a bien été envoyé x", "error" => "Message en langue bloquée détecté."]);
+                    }
                 }
                 $email = (new TemplatedEmail())
                     ->to('contact@lefebvreharold.fr')
