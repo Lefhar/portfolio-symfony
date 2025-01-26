@@ -118,7 +118,7 @@ class SendmailController extends AbstractController
                     ->htmlTemplate('sendmail/email.html.twig');
             }
             $mailer->send($email);
-            $success = "Votre message a bien été envoyé";
+            $success = "Votre message a bien été envoyé".dump($detectedLang);
         } else {
             foreach ($form->getErrors(true) as $formError) {
                 $errors = $formError->getMessage();
