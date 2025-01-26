@@ -100,7 +100,7 @@ class SendmailController extends AbstractController
                 var_dump($detectedLang); // Affiche le résultat pour vérifier la langue détectée
                 $blockedLanguages = ['russian', 'ukrainian']; // Bloque le russe et l’ukrainien
                 if (in_array($detectedLang, $blockedLanguages, true)) {
-                    var_dump("detecté ");
+                    var_dump($blockedLanguages);
                     // 🚫 Simuler un envoi réussi mais ne pas réellement envoyer
                     return $this->json(["success" => "Votre message a bien été envoyé 103", "error" => ""]);
                 }
