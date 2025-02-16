@@ -64,9 +64,9 @@ class SendmailController extends AbstractController
         $form->handleRequest($request);
         $errors = "";
         $success = "";
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() ) {
 
-            if($form->get('sujet')->getData() == "cv") {
+            if($form->get('sujet')->getData() == "cv" && $form->isValid()) {
                 $email = (new TemplatedEmail())
                     ->attachFromPath(getcwd() . '/assets/file/' . $cv->getTitleFile() . '.pdf', $cv->getTitleFile() . '.pdf')
                     ->from('contact@lefebvreharold.fr')
@@ -97,7 +97,7 @@ class SendmailController extends AbstractController
 
                 $ld = new Text_LanguageDetect();
                 $detectedLang = $ld->detect($form->get('message')->getData(), 2); // Augmenter le nombre de langues détectées à 2
-                $blockedLanguages = ['russian', 'ukrainian']; // Bloque le russe et l’ukrainien
+                $blockedLanguages = ['russian', 'ukrainian','slovene','croatian']; // Bloque le russe et l’ukrainien
                 foreach ($detectedLang as $lang => $score) {
                     if (in_array($lang, $blockedLanguages, true)) {
                         // Si la langue est bloquée, on renvoie une réponse
