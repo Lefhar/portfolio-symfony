@@ -64,9 +64,9 @@ class SendmailController extends AbstractController
         $form->handleRequest($request);
         $errors = "";
         $success = "";
-        if ($form->isSubmitted() ) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            if($form->get('sujet')->getData() == "cv" && $form->isValid()) {
+            if($form->get('sujet')->getData() == "cv") {
                 $email = (new TemplatedEmail())
                     ->attachFromPath(getcwd() . '/assets/file/' . $cv->getTitleFile() . '.pdf', $cv->getTitleFile() . '.pdf')
                     ->from('contact@lefebvreharold.fr')
