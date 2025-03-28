@@ -97,7 +97,7 @@ class SendmailController extends AbstractController
 
                 $ld = new Text_LanguageDetect();
                 $detectedLang = $ld->detect($form->get('message')->getData(), 2); // Augmenter le nombre de langues détectées à 2
-                $blockedLanguages = ['russian', 'ukrainian','slovene','croatian']; // Bloque le russe et l’ukrainien
+                $blockedLanguages = ['russian', 'ukrainian','slovene','croatian', 'polish']; // Bloque le russe et l’ukrainien
                 foreach ($detectedLang as $lang => $score) {
                     if (in_array($lang, $blockedLanguages, true)) {
                         // Si la langue est bloquée, on renvoie une réponse
