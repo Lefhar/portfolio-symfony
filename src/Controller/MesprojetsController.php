@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Mesprojets;
 use App\Form\MesprojetsType;
 use App\Repository\MesprojetsRepository;
+use App\Service\PublicImageUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +29,7 @@ class MesprojetsController extends AbstractController
     /**
      * @Route("/new", name="app_mesprojets_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, MesprojetsRepository $mesprojetsRepository): Response
+    public function new(Request $request, MesprojetsRepository $mesprojetsRepository, PublicImageUploader $publicImageUploader): Response
     {
         $mesprojet = new Mesprojets();
         $form = $this->createForm(MesprojetsType::class, $mesprojet);
@@ -38,16 +39,9 @@ class MesprojetsController extends AbstractController
             $mesprojet->setContent($form->get('content')->getData());
             $mesprojet->setDate(new  \DateTime());
             $mesprojet->setUsers($this->getUser());
-            if (!empty($form->get('image')->getData() && $form->get('image')->getData() != null)) {
-                $fichier = $form->get('image')->getData();
-                $aMimeTypes = array("image/gif", "image/jpeg", "image/jpg", "image/png", "image/x-png", "image/tiff", "image/webp");
-                if (in_array($fichier->getClientmimeType(), $aMimeTypes)) {
-                    if ($fichier->move('assets/file/', $fichier->getClientOriginalName())) {
-                        $mesprojet->setImage($fichier->getClientOriginalName());
-
-                    }
-                }
-
+            $fichier = $form->get('image')->getData();
+            if ($fichier !== null) {
+                $mesprojet->setImage($publicImageUploader->upload($fichier));
             }
             $mesprojetsRepository->add($mesprojet, true);
 
@@ -73,25 +67,18 @@ class MesprojetsController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_mesprojets_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Mesprojets $mesprojet, MesprojetsRepository $mesprojetsRepository): Response
+    public function edit(Request $request, Mesprojets $mesprojet, MesprojetsRepository $mesprojetsRepository, PublicImageUploader $publicImageUploader): Response
     {
         $form = $this->createForm(MesprojetsType::class, $mesprojet);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $mesprojet->setUsers($this->getUser());
             $mesprojet->setDate(new \DateTime());
             $mesprojet->setContent($form->get('content')->getData());
-            if (!empty($form->get('image')->getData() && $form->get('image')->getData() != null)) {
-                $fichier = $form->get('image')->getData();
-                $aMimeTypes = array("image/gif", "image/jpeg", "image/jpg", "image/png", "image/x-png", "image/tiff", "image/webp");
-                if (in_array($fichier->getClientmimeType(), $aMimeTypes)) {
-                    if ($fichier->move('assets/file/', $fichier->getClientOriginalName())) {
-                        $mesprojet->setImage($fichier->getClientOriginalName());
-
-                    }
-                }
-
+            $fichier = $form->get('image')->getData();
+            if ($fichier !== null) {
+                $mesprojet->setImage($publicImageUploader->upload($fichier));
             }
             $mesprojetsRepository->add($mesprojet, true);
            // dump($form->get('content')->getData());

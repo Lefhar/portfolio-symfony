@@ -23,6 +23,7 @@
                 <div class="row">
                 <div class="col mt-5">
                 <form action="{{ path('app_importexcel_database') }}"  method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token('import_excel') }}">
                 <input type="hidden" name="fichier" value="{{ fichier }}">
                 <table class="table table-striped">
                     <thead>

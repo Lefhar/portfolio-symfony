@@ -3,19 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Cv;
-use App\Repository\CvRepository;
+use App\Service\CvPdfGenerator;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
-use Knp\Snappy\Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use function PHPUnit\Framework\fileExists;
 
 class DownloadController extends AbstractController
 {
     /**
-     * @Route("/download/cvview/{id}", name="app_download")
+     * @Route("/download/cvview/{id}", name="app_download", methods={"GET"})
      */
     public function index(Cv $cv): Response
     {
@@ -25,76 +22,21 @@ class DownloadController extends AbstractController
     }
 
     /**
-     * @Route("/download/cv/{id}", name="app_download_pdf")
+     * @Route("/download/cv/{id}", name="app_download_pdf", methods={"GET"})
      */
-    public function cvPdf(Pdf $knpSnappyPdf,Cv $cv)
+    public function cvPdf(CvPdfGenerator $cvPdfGenerator, Cv $cv): PdfResponse
     {
-        if(file_exists(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf'))
-        {
-            return $this->file(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf');
-        }
-        $html = $this->renderView('download/index.html.twig', array(
-            'cv' => $cv
-        ));
-        $knpSnappyPdf->setTimeout(120);
-        $knpSnappyPdf->setOption("enable-local-file-access",true); // added this
-            $pdf = $knpSnappyPdf->getOutputFromHtml($html, array(
-
-                'orientation' => 'portrait',
-
-                'page-height' => 297,
-
-                'page-width'  => 210,
-
-                'encoding' => 'utf-8',
-
-                'images' => true,
-
-                'dpi' => 72,
-
-                'enable-external-links' => true,
-
-                'enable-internal-links' => true,
-                'margin-top'=>0,
-                'margin-bottom'=>0,
-                'margin-left'=>0,
-                'margin-right'=>0,
-                'no-background'=>false,
-                'background'=>true
-
-            )
-        );
-
-        file_put_contents(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf', $pdf);
-
         return new PdfResponse(
-            $knpSnappyPdf->getOutputFromHtml($html, array(
-
-                'orientation' => 'portrait',
-
-                'page-height' => 297,
-
-                'page-width'  => 210,
-
-                'encoding' => 'utf-8',
-
-                'images' => true,
-
-                'dpi' => 72,
-
-                'enable-external-links' => true,
-
-                'enable-internal-links' => true,
-                'margin-top'=>0,
-                'margin-bottom'=>0,
-                'margin-left'=>0,
-                'margin-right'=>0,
-                'no-background'=>false,
-                'background'=>true
-
-            )),
-            $cv->getTitleFile() . '.pdf'
+            $cvPdfGenerator->refresh($cv),
+            $cvPdfGenerator->filename($cv),
+            'application/pdf',
+            'attachment',
+            Response::HTTP_OK,
+            [
+                'Cache-Control' => 'no-store, private',
+                'Pragma' => 'no-cache',
+                'Expires' => '0',
+            ]
         );
-
     }
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Service\PublicImageUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,34 +61,27 @@ class ProfilController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_profil_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
+    public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, PublicImageUploader $publicImageUploader): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 //dd($form);
-            if (!empty($form->get('password')->getData())) {
+            $plainPassword = $form->get('password')->getData();
+            if (!empty($plainPassword)) {
                 $user->setPassword(
                     $userPasswordHasher->hashPassword(
                         $user,
-                        $form->get('plainPassword')->getData()
+                        $plainPassword
                     )
                 );
             } else {
                 $user->setPassword($user->getPassword());
             }
-//dd($form->get('photo')->getData());
-            if (!empty($form->get('photo')->getData() && $form->get('photo')->getData() != null)) {
-                $fichier = $form->get('photo')->getData();
-                $aMimeTypes = array("image/gif", "image/jpeg", "image/jpg", "image/png", "image/x-png", "image/tiff", "image/webp");
-                if (in_array($fichier->getClientmimeType(), $aMimeTypes)) {
-                    if ($fichier->move('assets/file/', $fichier->getClientOriginalName())) {
-                        $user->setPhoto($fichier->getClientOriginalName());
-
-                    }
-                }
-
+            $fichier = $form->get('photo')->getData();
+            if ($fichier !== null) {
+                $user->setPhoto($publicImageUploader->upload($fichier));
             }
             $userRepository->add($user, true);
 

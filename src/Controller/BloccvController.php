@@ -6,7 +6,7 @@ use App\Entity\Bloccv;
 use App\Form\BloccvType;
 use App\Repository\BloccvRepository;
 use App\Repository\CvRepository;
-use Knp\Snappy\Pdf;
+use App\Service\CvPdfGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +30,7 @@ class BloccvController extends AbstractController
     /**
      * @Route("/new", name="app_bloccv_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, BloccvRepository $bloccvRepository,Pdf $knpSnappyPdf,CvRepository $cvRepository): Response
+    public function new(Request $request, BloccvRepository $bloccvRepository, CvRepository $cvRepository, CvPdfGenerator $cvPdfGenerator): Response
     {
         $bloccv = new Bloccv();
         $form = $this->createForm(BloccvType::class, $bloccv);
@@ -43,42 +43,9 @@ class BloccvController extends AbstractController
 
 
             $cv = $cvRepository->findOneBy(['IsActive'=>1]);
-            $html = $this->renderView('download/index.html.twig', array(
-                'cv' => $cv
-            ));
-            $knpSnappyPdf->setTimeout(120);
-            $knpSnappyPdf->setOption("enable-local-file-access",true); // added this
-            $pdf = $knpSnappyPdf->getOutputFromHtml($html, array(
-
-                    'orientation' => 'portrait',
-
-                    'page-height' => 297,
-
-                    'page-width'  => 210,
-
-                    'encoding' => 'utf-8',
-
-                    'images' => true,
-
-                    'dpi' => 72,
-
-                    'enable-external-links' => true,
-
-                    'enable-internal-links' => true,
-                    'margin-top'=>0,
-                    'margin-bottom'=>0,
-                    'margin-left'=>0,
-                    'margin-right'=>0,
-                    'no-background'=>false,
-                    'background'=>true
-
-                )
-            );
-            if(file_exists(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf'))
-            {
-                unlink(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf');
+            if ($cv !== null) {
+                $cvPdfGenerator->refresh($cv);
             }
-            file_put_contents(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf', $pdf);
 
             return $this->redirectToRoute('app_bloccv_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -102,7 +69,7 @@ class BloccvController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_bloccv_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Bloccv $bloccv, BloccvRepository $bloccvRepository,Pdf $knpSnappyPdf,CvRepository $cvRepository): Response
+    public function edit(Request $request, Bloccv $bloccv, BloccvRepository $bloccvRepository, CvRepository $cvRepository, CvPdfGenerator $cvPdfGenerator): Response
     {
         $form = $this->createForm(BloccvType::class, $bloccv);
         $form->handleRequest($request);
@@ -113,42 +80,9 @@ class BloccvController extends AbstractController
             $bloccvRepository->add($bloccv, true);
 
             $cv = $cvRepository->findOneBy(['IsActive'=>1]);
-            $html = $this->renderView('download/index.html.twig', array(
-                'cv' => $cv
-            ));
-            $knpSnappyPdf->setTimeout(120);
-            $knpSnappyPdf->setOption("enable-local-file-access",true); // added this
-            $pdf = $knpSnappyPdf->getOutputFromHtml($html, array(
-
-                    'orientation' => 'portrait',
-
-                    'page-height' => 297,
-
-                    'page-width'  => 210,
-
-                    'encoding' => 'utf-8',
-
-                    'images' => true,
-
-                    'dpi' => 72,
-
-                    'enable-external-links' => true,
-
-                    'enable-internal-links' => true,
-                    'margin-top'=>0,
-                    'margin-bottom'=>0,
-                    'margin-left'=>0,
-                    'margin-right'=>0,
-                    'no-background'=>false,
-                    'background'=>true
-
-                )
-            );
-            if(file_exists(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf'))
-            {
-                unlink(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf');
+            if ($cv !== null) {
+                $cvPdfGenerator->refresh($cv);
             }
-            file_put_contents(getcwd().'/assets/file/'.$cv->getTitleFile() . '.pdf', $pdf);
             return $this->redirectToRoute('app_bloccv_index', [], Response::HTTP_SEE_OTHER);
         }
 

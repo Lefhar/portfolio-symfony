@@ -39,7 +39,7 @@ class UserType extends AbstractType
             ])
             ->add('github')
             ->add('linkedin')
-            ->add('password',null,['required'=>false,'attr'=>['value'=>''],'mapped'=>false])
+            ->add('password',PasswordType::class,['required'=>false,'attr'=>['value'=>''],'mapped'=>false])
             ->add('isVerified')
             ->add('photo',FileType::class,['required'=>false,'attr'=>['accept'=>'image/*' , 'class'=>'form-control'],'data_class' => null,'mapped'=>false])
         ;

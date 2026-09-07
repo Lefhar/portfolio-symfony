@@ -5,12 +5,13 @@ namespace App\Controller;
 use App\Entity\Demarchage;
 use App\Form\ImportexcelType;
 use App\Repository\DemarchageRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Shuchkin\SimpleXLSX;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -18,9 +19,12 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ImportexcelController extends AbstractController
 {
+    public function __construct(private readonly KernelInterface $kernel)
+    {
+    }
 
     /**
-     * @Route("/importexcel", name="app_importexcel")
+     * @Route("/importexcel", name="app_importexcel", methods={"GET", "POST"})
      */
     public function importcsv(Request $request, DemarchageRepository $demarchageRepository): Response
     {
@@ -28,20 +32,21 @@ class ImportexcelController extends AbstractController
         $fichier = "";
         $form = $this->createForm(ImportexcelType::class);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            if (!empty($form->get('excel')->getData() && $form->get('excel')->getData() != null)) {
-                $fichier = $form->get('excel')->getData();
-                //dump($fichier->getClientmimeType());
-                $aMimeTypes = array("application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-                if (in_array($fichier->getClientmimeType(), $aMimeTypes)) {
-                    if ($fichier->move('assets/file/excel/', $fichier->getClientOriginalName())) {
-                        $xlsx = SimpleXLSX::parse(getcwd() . '/assets/file/excel/' . $fichier->getClientOriginalName())->rows();
-                        $fichier = $fichier->getClientOriginalName();
-                        // dump($xlsx);
-                    }
+            $uploadedFile = $form->get('excel')->getData();
+            if ($uploadedFile instanceof UploadedFile && $this->isAllowedSpreadsheet($uploadedFile)) {
+                $fichier = bin2hex(random_bytes(16)) . '.xlsx';
+                $path = $this->excelDirectory() . '/' . $fichier;
+                $uploadedFile->move($this->excelDirectory(), $fichier);
+
+                $reader = SimpleXLSX::parse($path);
+                if ($reader === false) {
+                    @unlink($path);
+                    $fichier = "";
+                } else {
+                    $xlsx = $reader->rows();
                 }
-
             }
         }
         $colonne = $demarchageRepository->show_Columns();
@@ -65,13 +70,27 @@ class ImportexcelController extends AbstractController
     }
 
     /**
-     * @Route("/importexceldatabase", name="app_importexcel_database")
+     * @Route("/importexceldatabase", name="app_importexcel_database", methods={"POST"})
      */
-    public function importexceldatabase(Request $request, EntityManagerInterface $entityManager)
+    public function importexceldatabase(Request $request, EntityManagerInterface $entityManager): Response
     {
         ini_set('max_execution_time', 0);
-        if ($request->get('fichier')) {
-            $xlsx = SimpleXLSX::parse(getcwd() . '/assets/file/excel/' . $request->get('fichier'))->rows();
+
+        if (!$this->isCsrfTokenValid('import_excel', (string) $request->request->get('_token'))) {
+            return $this->redirectToRoute('app_importexcel');
+        }
+
+        $fichier = (string) $request->request->get('fichier', '');
+
+        if ($this->isSafeStoredSpreadsheetName($fichier)) {
+            $path = $this->excelDirectory() . '/' . $fichier;
+            $reader = is_file($path) ? SimpleXLSX::parse($path) : false;
+
+            if ($reader === false) {
+                return $this->redirectToRoute('app_importexcel');
+            }
+
+            $xlsx = $reader->rows();
             unset($xlsx[0]);
 
             foreach ($xlsx as $key => $colonne) {
@@ -108,10 +127,37 @@ class ImportexcelController extends AbstractController
                 }
 
             }
-            unlink(getcwd() . '/assets/file/excel/' . $request->get('fichier'));
+            @unlink($path);
             return $this->redirectToRoute('app_importexcel');
         }
-        return false;
+
+        return $this->redirectToRoute('app_importexcel');
     }
 
+    private function isAllowedSpreadsheet(UploadedFile $file): bool
+    {
+        return $file->isValid()
+            && strtolower($file->getClientOriginalExtension()) === 'xlsx'
+            && in_array($file->getMimeType(), [
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'application/octet-stream',
+                'application/zip',
+            ], true);
+    }
+
+    private function isSafeStoredSpreadsheetName(string $filename): bool
+    {
+        return preg_match('/^[a-f0-9]{32}\.xlsx$/', $filename) === 1;
+    }
+
+    private function excelDirectory(): string
+    {
+        $directory = $this->kernel->getProjectDir() . '/var/import_excel';
+
+        if (!is_dir($directory) && !mkdir($directory, 0775, true) && !is_dir($directory)) {
+            throw new \RuntimeException(sprintf('Unable to create import directory "%s".', $directory));
+        }
+
+        return $directory;
+    }
 }
