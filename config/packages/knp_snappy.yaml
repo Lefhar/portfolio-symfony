@@ -1,7 +1,11 @@
+parameters:
+  env(WKHTMLTOPDF_PATH): '/usr/local/bin/wkhtmltopdf'
+  env(WKHTMLTOIMAGE_PATH): '/usr/local/bin/wkhtmltoimage'
+
 knp_snappy:
   pdf:
     enabled:    true
-    binary:     "wkhtmltopdf"
+    binary:     '%env(WKHTMLTOPDF_PATH)%'
     options:    []
   image:
     enabled:    true
