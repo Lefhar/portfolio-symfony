@@ -95,6 +95,8 @@ class CvPdfGenerator
                 throw new RuntimeException(sprintf('Unable to replace PDF cache "%s".', $path));
             }
         }
+
+        @chmod($path, 0644);
     }
 
     private function publicFilesUri(): string
