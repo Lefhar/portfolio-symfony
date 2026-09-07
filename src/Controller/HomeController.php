@@ -26,6 +26,7 @@ class HomeController extends AbstractController
             'mesproject'=>$mesprojetsRepository->findAll(),
             'cv'=>$cv,
             'form'=>$form->createView(),
+            'cv_download_nonce' => bin2hex(random_bytes(8)),
         ]);
     }
 }
